@@ -1,0 +1,958 @@
+<!doctype html>
+<html>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gamearea {
+            width: 100%;
+            height: 500px;
+        }
+
+        .cards{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: white;
+        }
+
+        .cardpilebasebg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: white;
+            top: 40px;
+            left: 80px;
+            z-index: 1;
+        }
+
+        .cardpilebase{
+            top: 40px;
+            left: 240px;
+            z-index: 1;
+        }
+
+        .cardpilehidden{
+            display: none;
+        }
+
+        .dealbase1bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: white;
+            top: 40px;
+            left: 410px;
+            z-index: 0;
+        }
+
+        .dealbase2bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: white;
+            top: 40px;
+            left: 520px;
+            z-index: 0;
+        }
+
+        .dealbase3bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: white;
+            top: 40px;
+            left: 630px;
+            z-index: 0;
+        }
+
+        .dealbase4bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: white;
+            top: 40px;
+            left: 740px;
+            z-index: 0;
+        }
+
+        .dealbase1{
+            top: 40px;
+            left: 410px;
+            z-index: 1;
+        }
+
+        .dealbase2{
+            top: 40px;
+            left: 520px;
+            z-index: 1;
+        }
+
+        .dealbase3{
+            top: 40px;
+            left: 630px;
+            z-index: 1;
+        }
+
+        .dealbase4{
+            top: 40px;
+            left: 740px;
+            z-index: 1;
+        }
+
+        .cardplaybase1bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: grey;
+            top: 200px;
+            left: 80px;
+            z-index: 0;
+        }
+
+        .cardplaybase2bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: grey;
+            top: 200px;
+            left: 190px;
+            z-index: 0;
+        }
+
+        .cardplaybase3bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: grey;
+            top: 200px;
+            left: 300px;
+            z-index: 0;
+        }
+
+        .cardplaybase4bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: grey;
+            top: 200px;
+            left: 410px;
+            z-index: 0;
+        }
+
+        .cardplaybase5bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: grey;
+            top: 200px;
+            left: 520px;
+            z-index: 0;
+        }
+
+        .cardplaybase6bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: grey;
+            top: 200px;
+            left: 630px;
+            z-index: 0;
+        }
+
+        .cardplaybase7bg{
+            width: 79px;
+            height: 110px;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 5px;
+            position: absolute;
+            background-color: grey;
+            top: 200px;
+            left: 740px;
+            z-index: 0;
+        }
+
+        .cardplaybase1{
+            top: 200px;
+            left: 80px;
+            z-index: 1;
+        }
+
+        .cardplaybase2{
+            top: 200px;
+            left: 190px;
+            z-index: 0;
+        }
+
+        .cardplaybase3{
+            top: 200px;
+            left: 300px;
+            z-index: 0;
+        }
+
+        .cardplaybase4{
+            top: 200px;
+            left: 410px;
+            z-index: 0;
+        }
+
+        .cardplaybase5{
+            top: 200px;
+            left: 520px;
+            z-index: 0;
+        }
+
+        .cardplaybase6{
+            top: 200px;
+            left: 630px;
+            z-index: 0;
+        }
+
+        .cardplaybase7{
+            top: 200px;
+            left: 740px;
+            z-index: 0;
+        }
+    </style>
+    <style>
+        .cards{
+            background-image: url("animalDeck.png");
+            background-size: 1049px;
+        }
+
+        .cardback{
+            background-image: url("card1.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .spade{
+            background-position-y: -1px;
+        }
+
+        .diamond{
+            background-position-y: -114px;
+        }
+
+        .club{
+            background-position-y: -227px;
+        }
+
+        .heart{
+            background-position-y: -340px;
+        }
+
+        .cardace{
+            background-position-x: -1px;
+        }
+
+        .card2{
+            background-position-x: -82px;
+        }
+
+        .card3{
+            background-position-x: -162px;
+        }
+
+        .card4{
+            background-position-x: -243px;
+        }
+
+        .card5{
+            background-position-x: -323px;
+        }
+
+        .card6{
+            background-position-x: -404px;
+        }
+
+        .card7{
+            background-position-x: -485px;
+        }
+
+        .card8{
+            background-position-x: -566px;
+        }
+
+        .card9{
+            background-position-x: -647px;
+        }
+
+        .card10{
+            background-position-x: -727px;
+        }
+
+        .cardjack{
+            background-position-x: -969px;
+        }
+
+        .cardqueen{
+            background-position-x: -888px;
+        }
+
+        .cardking{
+            background-position-x: -808px;
+        }
+    </style>
+    <body>
+        <div class="gamearea">
+            <div class="cardpilebasebg cardback" onclick="drawPile()"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+            <div class="cards cardpilebase cardpilehidden"></div>
+
+            <div class="cards cardplaybase1 cardback"></div>
+            <div class="cards cardplaybase2 cardback"></div>
+            <div class="cards cardplaybase2 cardback"></div>
+            <div class="cards cardplaybase3 cardback"></div>
+            <div class="cards cardplaybase3 cardback"></div>
+            <div class="cards cardplaybase3 cardback"></div>
+            <div class="cards cardplaybase4 cardback"></div>
+            <div class="cards cardplaybase4 cardback"></div>
+            <div class="cards cardplaybase4 cardback"></div>
+            <div class="cards cardplaybase4 cardback"></div>
+            <div class="cards cardplaybase5 cardback"></div>
+            <div class="cards cardplaybase5 cardback"></div>
+            <div class="cards cardplaybase5 cardback"></div>
+            <div class="cards cardplaybase5 cardback"></div>
+            <div class="cards cardplaybase5 cardback"></div>
+            <div class="cards cardplaybase6 cardback"></div>
+            <div class="cards cardplaybase6 cardback"></div>
+            <div class="cards cardplaybase6 cardback"></div>
+            <div class="cards cardplaybase6 cardback"></div>
+            <div class="cards cardplaybase6 cardback"></div>
+            <div class="cards cardplaybase6 cardback"></div>
+            <div class="cards cardplaybase7 cardback"></div>
+            <div class="cards cardplaybase7 cardback"></div>
+            <div class="cards cardplaybase7 cardback"></div>
+            <div class="cards cardplaybase7 cardback"></div>
+            <div class="cards cardplaybase7 cardback"></div>
+            <div class="cards cardplaybase7 cardback"></div>
+            <div class="cards cardplaybase7 cardback"></div>
+
+            <div class="dealbase1bg"></div>
+            <div class="dealbase2bg"></div>
+            <div class="dealbase3bg"></div>
+            <div class="dealbase4bg"></div>
+            <div class="cardplaybase1bg"></div>
+            <div class="cardplaybase2bg"></div>
+            <div class="cardplaybase3bg"></div>
+            <div class="cardplaybase4bg"></div>
+            <div class="cardplaybase5bg"></div>
+            <div class="cardplaybase6bg"></div>
+            <div class="cardplaybase7bg"></div>
+        </div>
+    </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        /// Script Variables
+        var precursorX; // Recent x coordinates of cursor
+        var precursorY; // Recent y coordinates of cursor
+        var cursorX; // Latest x coordinates of cursor
+        var cursorY; // Latest y coordinates of cursor
+        var cardbasetopcss;
+        var cardbaseleftcss = {};
+        var dealbasetopcss;
+        var dealbaseleftcss = {};
+        var pilebasetopcss;
+        var pilebaseleftcss;
+        var spacing;
+        var cardwidth;
+        var cardlength;
+        var currentClassElements = ""; // Class of currently selected element for dragging
+        var elements = []; // All the elements to drag
+
+        /// User Values
+        cardbasetopcss = 200;
+        cardbaseleftcss["cardplaybase1"] = 80;
+        cardbaseleftcss["cardplaybase2"] = 190;
+        cardbaseleftcss["cardplaybase3"] = 300;
+        cardbaseleftcss["cardplaybase4"] = 410;
+        cardbaseleftcss["cardplaybase5"] = 520;
+        cardbaseleftcss["cardplaybase6"] = 630;
+        cardbaseleftcss["cardplaybase7"] = 740;
+        dealbasetopcss = 40;
+        dealbaseleftcss["dealbase1"] = 410;
+        dealbaseleftcss["dealbase2"] = 520;
+        dealbaseleftcss["dealbase3"] = 630;
+        dealbaseleftcss["dealbase4"] = 740;
+        pilebasetopcss = 40;
+        pilebaseleftcss = 240;
+        spacing = 23;
+        cardwidth = 79;
+        cardlength = 110;
+
+        /// Fix for annoying select-cursor bug in Chrome
+        document.onselectstart = function(e) {
+            e.preventDefault();
+            return false;
+        }
+
+        /// Organize cards for initial load and refresh
+        function orderPlayBase(num){
+            var className = ".cardplaybase" + num;
+            var length = $(className).length;
+            var initialtop = $(className).css("top");
+            for(var x = 0 ; x < length ; x++ ){
+                var newtop = parseInt(initialtop) + ( spacing * x );
+                if(x > 0)$(className).eq(x).css("top", newtop+"px");
+                $(className).eq(x).css("z-index", x + 1);
+            }
+        }
+
+        /// Organize deck cards for initial load and refresh
+        function orderDeckBase(){
+            var className = ".cardpilebase";
+            var length = $(className).length;
+            var initialleft = pilebaseleftcss;
+            var orderDeckBaseCounter = 0;
+            for(var x = 0 ; x < length ; x++ ){
+                if(orderDeckBaseCounter == 0){
+                    var newleft = initialleft;
+                    $(className).eq(x).css("left", newleft+"px");
+                    $(className).eq(x).css("z-index", 3);
+                    orderDeckBaseCounter++;
+                }
+                else if(orderDeckBaseCounter == 1){
+                    var newleft = initialleft - ( spacing * 1 );
+                    $(className).eq(x).css("left", newleft+"px");
+                    $(className).eq(x).css("z-index", 2);
+                    orderDeckBaseCounter++;
+                }
+                else if(orderDeckBaseCounter == 2){
+                    var newleft = initialleft - ( spacing * 2 );
+                    $(className).eq(x).css("left", newleft+"px");
+                    $(className).eq(x).css("z-index", 1);
+                    orderDeckBaseCounter = 0;
+                }
+            }
+        }
+
+        /// First randomize all dealbase cards;
+        function loadDeckCards(){
+            var className = ".cardpilebase";
+            var length = $(className).length;
+            for(var x = 0 ; x < length ; x++ ){
+                $(className).eq(x).addClass(randomCards());
+            }
+        }
+
+
+        var suits = new Array(4);
+        suits[0] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+        suits[1] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+        suits[2] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+        suits[3] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+        var suitsName = ["spade","diamond","club","heart"];
+        function randomCards(){
+            var returnstring = "";
+
+            var suitsMin=0;
+            var suitsMax=suits.length - 1;
+            var result1 = Math.floor(Math.random() * (+suitsMax - +suitsMin)) + +suitsMin;
+            returnstring = returnstring + suitsName[result1];
+
+
+            var cardsuitsMin=0;
+            var cardsuitsMax=suits[result1].length - 1;
+            var result2 = Math.floor(Math.random() * (+cardsuitsMax - +cardsuitsMin)) + +cardsuitsMin;
+            returnstring = returnstring + " " + suits[result1][result2];
+            if(suits[result1].length == 1){
+                suits.splice(result1,1);
+                suitsName.splice(result1,1);
+            }
+            else{
+                suits[result1].splice(result2,1);
+            }
+
+            return returnstring;
+        }
+
+        /// Dragging Cards function
+        function mousedown(){
+            var elementFromPoint = document.elementFromPoint(cursorX, cursorY);
+            var eClassName = elementFromPoint.className;
+            var eZIndex = parseInt(document.elementFromPoint(cursorX, cursorY).style.zIndex);
+
+            if(eClassName.includes("cardplaybase")){
+                var className = eClassName.substr(eClassName.indexOf("cardplaybase"),13);
+
+                if($(elementFromPoint).hasClass("draggable")){
+                    currentClassElements = className;
+                    elements.push($(elementFromPoint));
+                    for(var x = 0 ; x < $("."+className).length ; x++){
+                        if( $("."+className).eq(x).css("z-index") > eZIndex ){
+                            elements.push($("."+className).eq(x));
+                        }
+                    }
+
+                    for(var x = 0 ; x < elements.length ; x++ ){
+                        for(var y = 0 ; y < elements.length-1 ; y++ ){
+                            if( parseInt(elements[y].css("z-index")) > parseInt(elements[y+1].css("z-index")) ){
+                                var temp = elements[y];
+                                elements[y] = elements[y+1];
+                                elements[y+1] = temp;
+                            }
+                        }
+                    }
+                    console.log(elements);
+                }
+            }
+            else if(eClassName.includes("dealbase")){
+                var className = eClassName.substr(eClassName.indexOf("dealbase"),9);
+
+                if($(elementFromPoint).hasClass("draggable")){
+                    currentClassElements = className;
+                    elements.push($(elementFromPoint));
+                }
+            }
+            else if(eClassName.includes("cardpilebase")){
+                if($(elementFromPoint).hasClass("draggable")){
+                    currentClassElements = "cardpilebase";
+                    elements.push($(elementFromPoint));
+                }
+            }
+        }
+
+        function drag(e){
+            precursorX = cursorX;
+            precursorY = cursorY;
+            cursorX = event.clientX;
+            cursorY = event.clientY;
+
+            for(var x = 0 ; x < elements.length ; x++ ){
+                var temp = parseInt(elements[x].css("top"));
+                elements[x].css("top",(temp + (cursorY-precursorY)).toString() + "px");
+                temp = parseInt(elements[x].css("left"));
+                elements[x].css("left",(temp + (cursorX-precursorX)).toString() + "px");
+            }
+
+        }
+
+        function mouseup(){
+            var eClassName = document.elementFromPoint(cursorX, cursorY).className;
+            if(eClassName.includes("cardplaybase") || eClassName.includes("dealbase") || eClassName.includes("cardpilebase")){
+                var cliptrue = false;
+
+                // If card was drag to cardbase
+                for (const [key, value] of Object.entries(cardbaseleftcss)) {
+                    if( cursorX >= value && cursorX <= value + cardwidth && cursorY >= cardbasetopcss && key != currentClassElements && clipToCardBase(key,elements[0]) ){
+                        cliptrue = true;
+                        var toClassNameLength = $("."+key).length;
+                        for(var x = 0 ; x < elements.length ; x++ ){
+                            elements[x].removeClass(currentClassElements).addClass(key);
+                            elements[x].css("top",cardbasetopcss + (spacing * (toClassNameLength+x)));
+                            elements[x].css("z-index",toClassNameLength+x+1);
+                            elements[x].css('left',"");
+                        }
+
+                        // If card was from the cardpile
+                        if(currentClassElements == "cardpilebase"){
+                            for(var y = 0 ; y < $(".cardpilebase").length ; y++ ){
+                                if(!$(".cardpilebase").eq(y).hasClass("cardpilehidden")){
+                                    $(".cardpilebase").eq(y).addClass("draggable");
+                                    break;
+                                }
+                            }
+                            drawPileCounter--;
+                        }
+
+                        break;
+                    }
+                }
+
+                // If Card was drag to dealbase
+                if(elements.length == 1){
+                    for (const [key, value] of Object.entries(dealbaseleftcss)) {
+                        if( cursorX >= value && cursorX <= value + cardwidth && cursorY >= dealbasetopcss && cursorY <= dealbasetopcss + cardlength && clipToDealBase(key,elements[0]) ){
+                            cliptrue = true;
+                            var toClassNameLength = $("."+key).length;
+                            for(var x = 0 ; x < elements.length ; x++ ){
+                                elements[x].removeClass(currentClassElements).addClass(key);
+                                elements[x].css("top",cardbasetopcss);
+                                elements[x].css("z-index",toClassNameLength+x+1);
+                                elements[x].css('left',"");
+                                elements[x].css('top',"");
+                            }
+
+                            // If card was from the cardpile
+                            if(currentClassElements == "cardpilebase"){
+                                for(var y = 0 ; y < $(".cardpilebase").length ; y++ ){
+                                    if(!$(".cardpilebase").eq(y).hasClass("cardpilehidden")){
+                                        $(".cardpilebase").eq(y).addClass("draggable");
+                                        break;
+                                    }
+                                }
+                                drawPileCounter--;
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
+                // If Card was drag to illegal places
+                if(!cliptrue && eClassName.includes("cardplaybase")){
+                    for(var x = 0 ; x < elements.length ; x++ ){
+                        elements[x].css('left',"");
+                        elements[x].css('top', (cardbasetopcss + spacing * (elements[x].css("z-index")-1)) + "px");
+                    }
+                }
+                else if(!cliptrue && eClassName.includes("dealbase")){
+                    for(var x = 0 ; x < elements.length ; x++ ){
+                        elements[x].css('left',"");
+                        elements[x].css('top', dealbasetopcss + "px");
+                    }
+                }
+                else if(!cliptrue && eClassName.includes("cardpilebase")){
+                    for(var x = 0 ; x < elements.length ; x++ ){
+                        if ( elements[x].css('z-index') == 3 ){
+                            elements[x].css('left', pilebaseleftcss + "px");
+                        }
+                        else if ( elements[x].css('z-index') == 2 ){
+                            var newleft = pilebaseleftcss - ( spacing * 1 );
+                            elements[x].css('left', newleft + "px");
+                        }
+                        else if ( elements[x].css('z-index') == 1 ){
+                            var newleft = pilebaseleftcss - ( spacing * 2 );
+                            elements[x].css('left', newleft + "px");
+                        }
+                        elements[x].css('top', pilebasetopcss + "px");
+                    }
+                }
+            }
+
+            elements = [];
+            currentClassElements = "";
+            openTopCard();
+            setDraggable();
+        }
+
+        var suitCards = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+        function clipToCardBase(cardbase,element){
+
+            var cardbaseElement;
+            var cardbasesuitcolor;
+            var cardbasesuitcard;
+
+            var elementsuit;
+            var elementsuitcard;
+
+            if( $("."+cardbase).length == 0 && element.hasClass("cardking") ){
+                return true;
+            }
+            else if( $("."+cardbase).length == 0 && !element.hasClass("cardking") ){
+                return false;
+            }
+
+            for(var x = 0 ; x < $("."+cardbase).length ; x++ ){
+                if( $("."+cardbase).eq(x).css("z-index") == ($("."+cardbase).length)){
+                    cardbaseElement = $("."+cardbase).eq(x);
+                    break;
+                }
+            }
+
+            if( cardbaseElement.hasClass("spade") || cardbaseElement.hasClass("club") ){
+                cardbasesuitcolor = "black";
+            }
+            else{
+                cardbasesuitcolor = "red";
+            }
+
+            for( var x = 0 ; x < suitCards.length ; x++ ){
+                if( cardbaseElement.hasClass(suitCards[x]) ){
+                    cardbasesuitcard = x;
+                    break;
+                }
+            }
+
+            if( element.hasClass("spade") || element.hasClass("club") ){
+                elementsuit = "black";
+            }
+            else{
+                elementsuit = "red";
+            }
+
+            for( var x = 0 ; x < suitCards.length ; x++ ){
+                if( element.hasClass(suitCards[x]) ){
+                    elementsuitcard = x;
+                    break;
+                }
+            }
+
+            if( cardbasesuitcolor != elementsuit && cardbasesuitcard - 1 == elementsuitcard ) return true;
+            else {
+                console.log("clipToCardBase()");
+                console.log("cardbasesuitcolor: " + cardbasesuitcolor);
+                console.log("elementsuit: " + elementsuit);
+                console.log("cardbasesuitcard: " + cardbasesuitcard);
+                console.log("elementsuitcard: " + elementsuitcard);
+                return false;
+            }
+        }
+
+        function clipToDealBase(dealbase,element){
+            var dealbasesuitElement;
+            var dealbasesuit;
+            var dealbasesuitcard;
+
+            var elementsuit;
+            var elementsuitcard;
+
+            if( $("."+dealbase).length == 0 && element.hasClass("cardace") ){
+                return true;
+            }
+
+            for(var x = 0 ; x < $("."+dealbase).length ; x++ ){
+                if( $("."+dealbase).eq(x).css("z-index") == ($("."+dealbase).length)){
+                    dealbasesuitElement = $("."+dealbase).eq(x);
+                    break;
+                }
+            }
+
+            if( dealbasesuitElement.hasClass("spade") ){
+                dealbasesuit = "spade";
+            }
+            else if( dealbasesuitElement.hasClass("diamond") ){
+                dealbasesuit = "diamond";
+            }
+            else if( dealbasesuitElement.hasClass("club") ){
+                dealbasesuit = "club";
+            }
+            else if( dealbasesuitElement.hasClass("heart") ){
+                dealbasesuit = "heart";
+            }
+
+            for( var x = 0 ; x < suitCards.length ; x++ ){
+                if( dealbasesuitElement.hasClass(suitCards[x]) ){
+                    dealbasesuitcard = x;
+                    break;
+                }
+            }
+
+            if( element.hasClass("spade") ){
+                elementsuit = "spade";
+            }
+            else if( element.hasClass("diamond") ){
+                elementsuit = "diamond";
+            }
+            else if( element.hasClass("club") ){
+                elementsuit = "club";
+            }
+            else if( element.hasClass("heart") ){
+                elementsuit = "heart";
+            }
+
+            for( var x = 0 ; x < suitCards.length ; x++ ){
+                if( element.hasClass(suitCards[x]) ){
+                    elementsuitcard = x;
+                    break;
+                }
+            }
+
+            if( dealbasesuit == elementsuit && dealbasesuitcard + 1 == elementsuitcard ) return true;
+            else{
+                console.log("clipToDealBase()");
+                console.log("dealbasesuit: " + dealbasesuit);
+                console.log("elementsuit: " + elementsuit);
+                console.log("dealbasesuitcard: " + dealbasesuitcard);
+                console.log("elementsuitcard: " + elementsuitcard);
+                return false;
+            }
+        }
+
+        /// Update cards that are draggable to draggable status
+        /// Update this function for the specific gametype
+        function setDraggable(){
+            var length = $(".cards").length;
+            for(var x = 0 ; x < length ; x++){
+                if(!$(".cards").eq(x).hasClass("cardback") && !$(".cards").eq(x).hasClass("cardpilebase")){
+                    $(".cards").eq(x).addClass("draggable");
+                }
+            }
+        }
+
+
+        /// Update pile of cards to flip the top back facing cards
+        function openTopCard(){
+            for(var x = 1 ; x <= 7 ; x++ ){
+                var length = $(".cardplaybase"+x).length;
+                if($(".cardplaybase"+x).eq(length-1).hasClass("cardback")){
+                    var cardClass = randomCards();
+                    $(".cardplaybase"+x).eq(length-1).addClass(cardClass).removeClass("cardback");
+                }
+            }
+        }
+
+
+        var drawPileCounter = 0;
+        /// Open 3 cards from file
+        function drawPile(){
+            var openedCounter = 0;
+            var cardPileBaseLength = $(".cardpilebase").length;
+            if( cardPileBaseLength <= drawPileCounter ){
+                for ( var x = 0 ; x < cardPileBaseLength ; x++ ){
+                    if(!$(".cardpilebase").eq(x).hasClass("cardpilehidden")){
+                        $(".cardpilebase").eq(x).addClass("cardpilehidden");
+                    }
+                    if($(".cardpilebase").eq(x).hasClass("draggable")){
+                        $(".cardpilebase").eq(x).removeClass("draggable");
+                    }
+                }
+                drawPileCounter = 0;
+            }
+            else{
+                for ( var x = 0 ; x < cardPileBaseLength ; x++ ){
+                    if( x >= drawPileCounter && x <= drawPileCounter + 2 ){
+                        if($(".cardpilebase").eq(x).hasClass("cardpilehidden")){
+                            $(".cardpilebase").eq(x).removeClass("cardpilehidden");
+                        }
+                        if(openedCounter == 0){
+                            if(!$(".cardpilebase").eq(x).hasClass("draggable")){
+                                $(".cardpilebase").eq(x).addClass("draggable");
+                            }
+                        }
+                        openedCounter++;
+                    }
+                    else{
+                        if(!$(".cardpilebase").eq(x).hasClass("cardpilehidden")){
+                            $(".cardpilebase").eq(x).addClass("cardpilehidden");
+                        }
+                        if($(".cardpilebase").eq(x).hasClass("draggable")){
+                            $(".cardpilebase").eq(x).removeClass("draggable");
+                        }
+                    }
+                }
+            }
+
+            drawPileCounter += openedCounter;
+            if( cardPileBaseLength <= drawPileCounter ){
+                if($(".cardpilebasebg").hasClass("cardback")){
+                    $(".cardpilebasebg").removeClass("cardback");
+                }
+            }
+            else{
+                if(!$(".cardpilebasebg").hasClass("cardback")){
+                    $(".cardpilebasebg").addClass("cardback");
+                }
+                if(drawPileCounter == 0 ) orderDeckBase();
+            }
+        }
+
+
+        /// On document ready call
+        $(function(){
+            orderPlayBase(1);
+            orderPlayBase(2);
+            orderPlayBase(3);
+            orderPlayBase(4);
+            orderPlayBase(5);
+            orderPlayBase(6);
+            orderPlayBase(7);
+
+            document.onmousedown = function() {
+                mousedown();
+            };
+
+            document.ontouchstart = function() {
+                mousedown();
+            };
+
+            document.onmouseup = function() {
+                mouseup();
+            };
+
+            document.ontouchend = function() {
+                mouseup();
+            };
+
+            document.onmousemove = function(e) {
+                drag(e);
+            };
+
+            document.ontouchmove = function(e) {
+                drag(e);
+            };
+
+            openTopCard();
+            orderDeckBase();
+            setDraggable();
+            loadDeckCards();
+        });
+    </script>
+</html>
