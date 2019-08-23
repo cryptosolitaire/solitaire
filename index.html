@@ -683,19 +683,19 @@
                 }
 
                 // If Card was drag to illegal places
-                if(!cliptrue && eClassName.includes("cardplaybase")){
+                if(!cliptrue && currentClassElements.includes("cardplaybase")){
                     for(var x = 0 ; x < elements.length ; x++ ){
                         elements[x].css('left',"");
                         elements[x].css('top', (cardbasetopcss + spacing * (elements[x].css("z-index")-1)) + "px");
                     }
                 }
-                else if(!cliptrue && eClassName.includes("dealbase")){
+                else if(!cliptrue && currentClassElements.includes("dealbase")){
                     for(var x = 0 ; x < elements.length ; x++ ){
                         elements[x].css('left',"");
                         elements[x].css('top', dealbasetopcss + "px");
                     }
                 }
-                else if(!cliptrue && eClassName.includes("cardpilebase")){
+                else if(!cliptrue && currentClassElements.includes("cardpilebase")){
                     for(var x = 0 ; x < elements.length ; x++ ){
                         if ( elements[x].css('z-index') == 3 ){
                             elements[x].css('left', pilebaseleftcss + "px");
