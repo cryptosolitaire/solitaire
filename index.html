@@ -574,7 +574,6 @@
                             }
                         }
                     }
-                    console.log(elements);
                 }
             }
             else if(eClassName.includes("dealbase")){
@@ -787,11 +786,6 @@
 
             if( cardbasesuitcolor != elementsuit && cardbasesuitcard - 1 == elementsuitcard ) return true;
             else {
-                console.log("clipToCardBase()");
-                console.log("cardbasesuitcolor: " + cardbasesuitcolor);
-                console.log("elementsuit: " + elementsuit);
-                console.log("cardbasesuitcard: " + cardbasesuitcard);
-                console.log("elementsuitcard: " + elementsuitcard);
                 return false;
             }
         }
@@ -860,11 +854,6 @@
 
             if( dealbasesuit == elementsuit && dealbasesuitcard + 1 == elementsuitcard ) return true;
             else{
-                console.log("clipToDealBase()");
-                console.log("dealbasesuit: " + dealbasesuit);
-                console.log("elementsuit: " + elementsuit);
-                console.log("dealbasesuitcard: " + dealbasesuitcard);
-                console.log("elementsuitcard: " + elementsuitcard);
                 return false;
             }
         }
