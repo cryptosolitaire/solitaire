@@ -1,0 +1,325 @@
+    .cards{
+        background-size: 1049px;
+    }
+
+    .cardback{
+        background-image: url("Back.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.cardace{
+        background-image: url("As.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card2{
+        background-image: url("2s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card3{
+        background-image: url("3s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card4{
+        background-image: url("4s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card5{
+        background-image: url("5s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card6{
+        background-image: url("6s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card7{
+        background-image: url("7s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card8{
+        background-image: url("8s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card9{
+        background-image: url("9s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.card10{
+        background-image: url("10s.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.cardjack{
+        background-image: url("Js.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.cardqueen{
+        background-image: url("Qs.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .spade.cardking{
+        background-image: url("Ks.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+
+    .diamond.cardace{
+        background-image: url("Ad.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card2{
+        background-image: url("2d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card3{
+        background-image: url("3d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card4{
+        background-image: url("4d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card5{
+        background-image: url("5d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card6{
+        background-image: url("6d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card7{
+        background-image: url("7d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card8{
+        background-image: url("8d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card9{
+        background-image: url("9d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.card10{
+        background-image: url("10d.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.cardjack{
+        background-image: url("Jd.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.cardqueen{
+        background-image: url("Qd.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .diamond.cardking{
+        background-image: url("Kd.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+
+
+    .club.cardace{
+        background-image: url("Ac.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card2{
+        background-image: url("2c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card3{
+        background-image: url("3c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card4{
+        background-image: url("4c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card5{
+        background-image: url("5c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card6{
+        background-image: url("6c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card7{
+        background-image: url("7c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card8{
+        background-image: url("8c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card9{
+        background-image: url("9c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.card10{
+        background-image: url("10c.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.cardjack{
+        background-image: url("Jc.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.cardqueen{
+        background-image: url("Qc.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .club.cardking{
+        background-image: url("Kc.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+
+    .heart.cardace{
+        background-image: url("Ah.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card2{
+        background-image: url("2h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card3{
+        background-image: url("3h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card4{
+        background-image: url("4h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card5{
+        background-image: url("5h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card6{
+        background-image: url("6h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card7{
+        background-image: url("7h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card8{
+        background-image: url("8h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card9{
+        background-image: url("9h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.card10{
+        background-image: url("10h.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.cardjack{
+        background-image: url("Jh.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.cardqueen{
+        background-image: url("Qh.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .heart.cardking{
+        background-image: url("Kh.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
