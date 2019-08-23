@@ -807,6 +807,9 @@
             if( $("."+dealbase).length == 0 && element.hasClass("cardace") ){
                 return true;
             }
+            else if( $("."+dealbase).length == 0 && !element.hasClass("cardace") ){
+                return false;
+            }
 
             for(var x = 0 ; x < $("."+dealbase).length ; x++ ){
                 if( $("."+dealbase).eq(x).css("z-index") == ($("."+dealbase).length)){
