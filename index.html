@@ -616,6 +616,20 @@
 
         }
 
+        function touchdrag(e){
+            precursorX = cursorX;
+            precursorY = cursorY;
+            cursorX = parseInt(event.touches[0].clientX);
+            cursorY = parseInt(event.touches[0].clientY);
+
+            for(var x = 0 ; x < elements.length ; x++ ){
+                var temp = parseInt(elements[x].css("top"));
+                elements[x].css("top",(temp + (cursorY-precursorY)).toString() + "px");
+                temp = parseInt(elements[x].css("left"));
+                elements[x].css("left",(temp + (cursorX-precursorX)).toString() + "px");
+            }
+        }
+
         function mouseup(){
             for(var x = 0 ; x < elements.length ; x++ ){
                 elements[x].css("z-index" , parseInt(elements[x].css("z-index")) - 100 );
@@ -946,6 +960,10 @@
             };
 
             document.ontouchstart = function() {
+                precursorX = parseInt(event.touches[0].clientX);
+                precursorY = parseInt(event.touches[0].clientY);
+                cursorX = parseInt(event.touches[0].clientX);
+                cursorY = parseInt(event.touches[0].clientY);
                 mousedown();
             };
 
@@ -962,7 +980,7 @@
             };
 
             document.ontouchmove = function(e) {
-                drag(e);
+                touchdrag(e);
             };
 
             openTopCard();
