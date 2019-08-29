@@ -464,11 +464,7 @@
 
 
         var suits = new Array(4);
-        suits[0] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
-        suits[1] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
-        suits[2] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
-        suits[3] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
-        var suitsName = ["spade","diamond","club","heart"];
+        var suitsName = [];
         function randomCards(){
             var returnstring = "";
 
@@ -984,14 +980,6 @@
 
         /// On document ready call
         $(function(){
-            orderPlayBase(1);
-            orderPlayBase(2);
-            orderPlayBase(3);
-            orderPlayBase(4);
-            orderPlayBase(5);
-            orderPlayBase(6);
-            orderPlayBase(7);
-
             document.onmousedown = function() {
                 mousedown();
             };
@@ -1020,10 +1008,7 @@
                 touchdrag(e);
             };
 
-            openTopCard();
-            orderDeckBase();
-            setDraggable();
-            loadDeckCards();
+            newGame();
         });
     </script>
 </html>
