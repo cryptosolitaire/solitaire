@@ -886,6 +886,101 @@
             }
         }
 
+        function newGame(){
+            precursorX = undefined;
+            precursorY = undefined;
+            cursorX = undefined;
+            cursorY = undefined;
+            currentClassElements = "";
+            elements = [];
+
+            suits[0] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+            suits[1] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+            suits[2] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+            suits[3] = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
+            suitsName = ["spade","diamond","club","heart"];
+
+            var initialGameArea = "";
+            initialGameArea = initialGameArea + '<div class="cardpilebasebg cardback" onclick="drawPile()"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase1 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase2 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase2 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase3 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase3 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase3 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase4 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase4 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase4 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase4 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase5 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase5 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase5 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase5 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase5 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase6 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase6 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase6 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase6 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase6 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase6 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
+            initialGameArea = initialGameArea + '<div class="dealbase1bg"></div>';
+            initialGameArea = initialGameArea + '<div class="dealbase2bg"></div>';
+            initialGameArea = initialGameArea + '<div class="dealbase3bg"></div>';
+            initialGameArea = initialGameArea + '<div class="dealbase4bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase1bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase2bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase3bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase4bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase5bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase6bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase7bg"></div>';
+
+            $(".gamearea").html(initialGameArea);
+
+            orderPlayBase(1);
+            orderPlayBase(2);
+            orderPlayBase(3);
+            orderPlayBase(4);
+            orderPlayBase(5);
+            orderPlayBase(6);
+            orderPlayBase(7);
+
+            openTopCard();
+            orderDeckBase();
+            setDraggable();
+            loadDeckCards();
+        }
 
         /// On document ready call
         $(function(){
