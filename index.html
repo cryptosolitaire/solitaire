@@ -386,6 +386,7 @@
         var cardlength;
         var currentClassElements = ""; // Class of currently selected element for dragging
         var elements = []; // All the elements to drag
+        var threeMode;
 
         /// User Values
         cardbasetopcss = 200;
@@ -436,19 +437,19 @@
                     var newleft = initialleft;
                     $(className).eq(x).css("left", newleft+"px");
                     $(className).eq(x).css("z-index", 3);
-                    orderDeckBaseCounter++;
+                    if(threeMode) orderDeckBaseCounter++;
                 }
                 else if(orderDeckBaseCounter == 1){
                     var newleft = initialleft - ( spacing * 1 );
                     $(className).eq(x).css("left", newleft+"px");
                     $(className).eq(x).css("z-index", 2);
-                    orderDeckBaseCounter++;
+                    if(threeMode) orderDeckBaseCounter++;
                 }
                 else if(orderDeckBaseCounter == 2){
                     var newleft = initialleft - ( spacing * 2 );
                     $(className).eq(x).css("left", newleft+"px");
                     $(className).eq(x).css("z-index", 1);
-                    orderDeckBaseCounter = 0;
+                    if(threeMode) orderDeckBaseCounter = 0;
                 }
             }
         }
@@ -846,7 +847,9 @@
             }
             else{
                 for ( var x = 0 ; x < cardPileBaseLength ; x++ ){
-                    if( x >= drawPileCounter && x <= drawPileCounter + 2 ){
+                    var drawPileAmount = 2;
+                    if(!threeMode) drawPileAmount = 0;
+                    if( x >= drawPileCounter && x <= drawPileCounter + drawPileAmount ){
                         if($(".cardpilebase").eq(x).hasClass("cardpilehidden")){
                             $(".cardpilebase").eq(x).removeClass("cardpilehidden");
                         }
@@ -882,7 +885,19 @@
             }
         }
 
-        function newGame(){
+        // newGame() 3 turn mode: default
+        // newGame(3) 3 turn mode
+        // newGame(1) 1 turn mode
+        function newGame(mode){
+            if( mode == 3 ){
+                threeMode = true;
+            }
+            else if( mode == 1 ){
+                threeMode = false;
+            }
+            else{
+                threeMode = true;
+            }
             precursorX = undefined;
             precursorY = undefined;
             cursorX = undefined;
