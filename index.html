@@ -1136,6 +1136,7 @@
                     }
                 }
 
+                trail(".dealbase" + currentDealBase,currentEQ);
             }
 
             if(!end)window.requestAnimationFrame(win);
@@ -1144,6 +1145,31 @@
 
         function bounceMax(low,high){
             return ((high-low)*0.5)+low;
+        }
+
+        function trail(dealbase,eq){
+            var className = $(dealbase).eq(eq).attr("class");
+            var newClassName = "cards";
+            for (var x = 0 ; x < suitCards.length ; x++ ){
+                if(className.includes(suitCards[x])){
+                    newClassName = newClassName + " " + suitCards[x];
+                }
+            }
+
+            if(className.includes("spade")){
+                newClassName = newClassName + " spade";
+            }
+            else if(className.includes("diamond")){
+                newClassName = newClassName + " diamond";
+            }
+            else if(className.includes("club")){
+                newClassName = newClassName + " club";
+            }
+            else if(className.includes("heart")){
+                newClassName = newClassName + " heart";
+            }
+
+            $(".gamearea").append("<div class=\"" + newClassName + "\" style=\"top: "+$(dealbase).eq(eq).position().top+"px; left: "+$(dealbase).eq(eq).position().left+"px; \"></div>");
         }
 
         /// On document ready call
