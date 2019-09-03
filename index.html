@@ -912,6 +912,7 @@
             suitsName = ["spade","diamond","club","heart"];
 
             var initialGameArea = "";
+            /*
             initialGameArea = initialGameArea + '<div class="cardpilebasebg cardback" onclick="drawPile()"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
@@ -976,6 +977,77 @@
             initialGameArea = initialGameArea + '<div class="cardplaybase5bg"></div>';
             initialGameArea = initialGameArea + '<div class="cardplaybase6bg"></div>';
             initialGameArea = initialGameArea + '<div class="cardplaybase7bg"></div>';
+            */
+
+            initialGameArea = initialGameArea + '<div class="cardpilebasebg cardback" onclick="drawPile()"></div>';
+
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardace"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card2"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card3"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card4"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card5"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card6"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card7"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card8"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card9"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card10"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardjack"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardqueen"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardking"></div>';
+
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardace"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card2"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card3"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card4"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card5"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card6"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card7"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card8"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card9"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card10"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardjack"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardqueen"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardking"></div>';
+
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardace"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card2"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card3"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card4"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card5"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card6"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card7"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card8"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card9"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card10"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardjack"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardqueen"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardking"></div>';
+
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardace"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card2"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card3"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card4"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card5"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card6"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card7"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card8"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card9"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card10"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardjack"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardqueen"></div>';
+            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardking"></div>';
+
+            initialGameArea = initialGameArea + '<div class="dealbase1bg"></div>';
+            initialGameArea = initialGameArea + '<div class="dealbase2bg"></div>';
+            initialGameArea = initialGameArea + '<div class="dealbase3bg"></div>';
+            initialGameArea = initialGameArea + '<div class="dealbase4bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase1bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase2bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase3bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase4bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase5bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase6bg"></div>';
+            initialGameArea = initialGameArea + '<div class="cardplaybase7bg"></div>';
 
             $(".gamearea").html(initialGameArea);
 
@@ -991,6 +1063,87 @@
             orderDeckBase();
             setDraggable();
             loadDeckCards();
+        }
+
+        var startTime = Date.now();
+        var moveX = 9;
+        var moveY = 15;
+        var moveYAdd = 0;
+        var tick = 50;
+        var topLimit = 0;
+        var end = false;
+
+        var currentDealBase = 1;
+        var currentEQ = 12;
+        function win(){
+
+            if( Date.now() - startTime >= tick ){
+
+                startTime = Date.now();
+
+                if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top < topLimit ){
+                    if(moveY < 0) moveY = moveY * -1;
+                }
+                else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength >= window.innerHeight ){
+                    if(moveY > 0) moveY = moveY * -1;
+                    if(bounceMax(topLimit,window.innerHeight) < window.innerHeight*0.2){
+                        topLimit = 10;
+                    }
+                    else{
+                        topLimit = bounceMax(topLimit,window.innerHeight);
+                    }
+                }
+
+                if(moveY < 0 && moveYAdd > 0){
+                    moveYAdd = 0;
+                }
+                else if(moveY < 0 && moveYAdd <= 0){
+                    moveYAdd++;
+                }
+                else if(moveY > 0 && moveYAdd < 0){
+                    moveYAdd = 0;
+                }
+                else if(moveY > 0 && moveYAdd >= 0){
+                    if( window.innerHeight < ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveY + moveYAdd) ){
+                        moveYAdd = window.innerHeight - ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveY);
+                    }
+                    else{
+                        moveYAdd++;
+                    }
+                }
+
+                $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + moveY + moveYAdd) + "px");
+                $(".dealbase" + currentDealBase).eq(currentEQ).css('left', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + moveX) + "px");
+
+                if( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + cardwidth < 0 || $(".dealbase" + currentDealBase).eq(currentEQ).position().left > window.innerWidth ){
+                    if(currentDealBase == 4 && currentEQ == 0){
+                        end = true;
+                    }
+                    else if(currentDealBase < 4 && currentEQ >= 0){
+                        currentDealBase++;
+                        moveX = 9;
+                        moveY = 15;
+                        moveYAdd = 0;
+                        topLimit = 0;
+                    }
+                    else if(currentDealBase == 4 && currentEQ >= 0){
+                        currentDealBase = 1;
+                        currentEQ--;
+                        moveX = 9;
+                        moveY = 15;
+                        moveYAdd = 0;
+                        topLimit = 0;
+                    }
+                }
+
+            }
+
+            if(!end)window.requestAnimationFrame(win);
+
+        }
+
+        function bounceMax(low,high){
+            return ((high-low)*0.5)+low;
         }
 
         /// On document ready call
