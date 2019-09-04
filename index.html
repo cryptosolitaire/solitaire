@@ -1140,7 +1140,7 @@
         var currentZIndex = 100;
         function trail(dealbase,eq){
             var className = $(dealbase).eq(eq).attr("class");
-            var newClassName = "cards";
+            var newClassName = "trail cards";
             for (var x = 0 ; x < suitCards.length ; x++ ){
                 if(className.includes(suitCards[x])){
                     newClassName = newClassName + " " + suitCards[x];
@@ -1161,6 +1161,15 @@
             }
 
             $(".gamearea").append("<div class=\"" + newClassName + "\" style=\"top: "+$(dealbase).eq(eq).position().top+"px; left: "+$(dealbase).eq(eq).position().left+"px; z-index: "+(currentZIndex++)+";\"></div>");
+
+            deleteTrail();
+        }
+
+        var maxTrail = 1000;
+        function deleteTrail(){
+            if(currentZIndex - 100 > maxTrail){
+                $(".trail").eq(0).remove();
+            }
         }
 
         function randomNumber(min,max){
