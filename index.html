@@ -1083,6 +1083,7 @@
 
                 if( moveYMin <= 0 && moveY < 0 ){
                     moveYMin = 0;
+                    moveYAdd -= 5;
                     if(moveY < 0) moveY = moveY * -1;
                 }
                 else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength >= window.innerHeight ){
