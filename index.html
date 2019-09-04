@@ -1070,7 +1070,7 @@
         var moveY = 15;
         var moveYAdd = 0;
         var moveYMin = 0;
-        var tick = 50;
+        var tick = 0;
         var end = false;
 
         var currentDealBase = 1;
@@ -1112,6 +1112,15 @@
                 if( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + cardwidth < 0 || $(".dealbase" + currentDealBase).eq(currentEQ).position().left > window.innerWidth ){
                     if(currentDealBase == 4 && currentEQ == 0){
                         end = true;
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
                     }
                     else if(currentDealBase < 4 && currentEQ >= 0){
                         currentDealBase++;
@@ -1165,7 +1174,7 @@
             deleteTrail();
         }
 
-        var maxTrail = 1000;
+        var maxTrail = 10;
         function deleteTrail(){
             if(currentZIndex - 100 > maxTrail){
                 $(".trail").eq(0).remove();
