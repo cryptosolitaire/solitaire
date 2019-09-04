@@ -1165,12 +1165,19 @@
         }
 
         function randomNumber(min,max){
-            var returnVal = 0;
-            while (returnVal == 0){
-                returnVal = Math.floor(Math.random() * (max - min + 1)) + min
+            if(min < -5 && max > 5){
+                var returnVal = 0;
+                while (returnVal < 5 && returnVal > -5){
+                    returnVal = Math.floor(Math.random() * (max - min + 1)) + min;
+                }
+                return returnVal;
             }
-            return returnVal;
+            else{
+                if( Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1 ) return 5;
+                else return -5;
+            }
         }
+
         /// On document ready call
         $(function(){
             document.onmousedown = function() {
