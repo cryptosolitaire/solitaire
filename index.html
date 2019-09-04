@@ -1136,6 +1136,7 @@
 
         }
 
+        var currentZIndex = 100;
         function trail(dealbase,eq){
             var className = $(dealbase).eq(eq).attr("class");
             var newClassName = "cards";
@@ -1158,7 +1159,7 @@
                 newClassName = newClassName + " heart";
             }
 
-            $(".gamearea").append("<div class=\"" + newClassName + "\" style=\"top: "+$(dealbase).eq(eq).position().top+"px; left: "+$(dealbase).eq(eq).position().left+"px; \"></div>");
+            $(".gamearea").append("<div class=\"" + newClassName + "\" style=\"top: "+$(dealbase).eq(eq).position().top+"px; left: "+$(dealbase).eq(eq).position().left+"px; z-index: "+(currentZIndex++)+";\"></div>");
         }
 
         /// On document ready call
