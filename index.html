@@ -1118,6 +1118,7 @@
                         moveX = 9;
                         moveY = 15;
                         moveYAdd = 0;
+                        moveYMin = 0;
                     }
                     else if(currentDealBase == 4 && currentEQ >= 0){
                         currentDealBase = 1;
@@ -1125,6 +1126,7 @@
                         moveX = 9;
                         moveY = 15;
                         moveYAdd = 0;
+                        moveYMin = 0;
                     }
                 }
 
@@ -1162,6 +1164,13 @@
             $(".gamearea").append("<div class=\"" + newClassName + "\" style=\"top: "+$(dealbase).eq(eq).position().top+"px; left: "+$(dealbase).eq(eq).position().left+"px; z-index: "+(currentZIndex++)+";\"></div>");
         }
 
+        function randomNumber(min,max){
+            var returnVal = 0;
+            while (returnVal == 0){
+                returnVal = Math.floor(Math.random() * (max - min + 1)) + min
+            }
+            return returnVal;
+        }
         /// On document ready call
         $(function(){
             document.onmousedown = function() {
