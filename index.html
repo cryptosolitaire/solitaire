@@ -677,6 +677,7 @@
             currentClassElements = "";
             openTopCard();
             setDraggable();
+            ifWin();
         }
 
         var suitCards = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
@@ -912,7 +913,7 @@
             suitsName = ["spade","diamond","club","heart"];
 
             var initialGameArea = "";
-            /*
+
             initialGameArea = initialGameArea + '<div class="cardpilebasebg cardback" onclick="drawPile()"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
@@ -966,77 +967,6 @@
             initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardplaybase7 cardback"></div>';
-            initialGameArea = initialGameArea + '<div class="dealbase1bg"></div>';
-            initialGameArea = initialGameArea + '<div class="dealbase2bg"></div>';
-            initialGameArea = initialGameArea + '<div class="dealbase3bg"></div>';
-            initialGameArea = initialGameArea + '<div class="dealbase4bg"></div>';
-            initialGameArea = initialGameArea + '<div class="cardplaybase1bg"></div>';
-            initialGameArea = initialGameArea + '<div class="cardplaybase2bg"></div>';
-            initialGameArea = initialGameArea + '<div class="cardplaybase3bg"></div>';
-            initialGameArea = initialGameArea + '<div class="cardplaybase4bg"></div>';
-            initialGameArea = initialGameArea + '<div class="cardplaybase5bg"></div>';
-            initialGameArea = initialGameArea + '<div class="cardplaybase6bg"></div>';
-            initialGameArea = initialGameArea + '<div class="cardplaybase7bg"></div>';
-            */
-
-            initialGameArea = initialGameArea + '<div class="cardpilebasebg cardback" onclick="drawPile()"></div>';
-
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardace"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card2"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card3"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card4"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card5"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card6"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card7"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card8"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card9"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade card10"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardjack"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardqueen"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase1 spade cardking"></div>';
-
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardace"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card2"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card3"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card4"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card5"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card6"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card7"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card8"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card9"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond card10"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardjack"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardqueen"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase2 diamond cardking"></div>';
-
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardace"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card2"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card3"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card4"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card5"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card6"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card7"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card8"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card9"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club card10"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardjack"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardqueen"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase3 club cardking"></div>';
-
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardace"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card2"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card3"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card4"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card5"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card6"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card7"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card8"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card9"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart card10"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardjack"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardqueen"></div>';
-            initialGameArea = initialGameArea + '<div class="cards dealbase4 heart cardking"></div>';
-
             initialGameArea = initialGameArea + '<div class="dealbase1bg"></div>';
             initialGameArea = initialGameArea + '<div class="dealbase2bg"></div>';
             initialGameArea = initialGameArea + '<div class="dealbase3bg"></div>';
@@ -1178,6 +1108,17 @@
         function deleteTrail(){
             if(currentZIndex - 100 > maxTrail){
                 $(".trail").eq(0).remove();
+            }
+        }
+
+        function ifWin(){
+            var dealbase1Number = $(".dealbase1").length;
+            var dealbase2Number = $(".dealbase2").length;
+            var dealbase3Number = $(".dealbase3").length;
+            var dealbase4Number = $(".dealbase4").length;
+
+            if( dealbase1Number == 13 && dealbase2Number == 13 && dealbase3Number == 13 && dealbase4Number == 13 ){
+                window.requestAnimationFrame(win);
             }
         }
 
