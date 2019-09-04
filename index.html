@@ -1069,8 +1069,8 @@
         var moveX = 9;
         var moveY = 15;
         var moveYAdd = 0;
+        var moveYMin = 0;
         var tick = 50;
-        var topLimit = 0;
         var end = false;
 
         var currentDealBase = 1;
@@ -1081,38 +1081,31 @@
 
                 startTime = Date.now();
 
-                if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top < topLimit ){
+                if( moveYMin <= 0 && moveY < 0 ){
+                    moveYMin = 0;
                     if(moveY < 0) moveY = moveY * -1;
                 }
                 else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength >= window.innerHeight ){
+                    moveYAdd = 0;
+                    if(moveYMin < 7) moveYMin = 7;
                     if(moveY > 0) moveY = moveY * -1;
-                    if(bounceMax(topLimit,window.innerHeight) < window.innerHeight*0.2){
-                        topLimit = 10;
-                    }
-                    else{
-                        topLimit = bounceMax(topLimit,window.innerHeight);
-                    }
                 }
 
-                if(moveY < 0 && moveYAdd > 0){
-                    moveYAdd = 0;
+                if(moveY < 0){
+                    moveYMin -= 2;
                 }
-                else if(moveY < 0 && moveYAdd <= 0){
-                    moveYAdd++;
-                }
-                else if(moveY > 0 && moveYAdd < 0){
-                    moveYAdd = 0;
-                }
-                else if(moveY > 0 && moveYAdd >= 0){
+                else if(moveY > 0){
+                    moveYMin = moveYAdd + 2;
                     if( window.innerHeight < ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveY + moveYAdd) ){
                         moveYAdd = window.innerHeight - ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveY);
                     }
                     else{
-                        moveYAdd++;
+                        moveYAdd += 2;
                     }
                 }
 
-                $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + moveY + moveYAdd) + "px");
+                if(moveY > 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + moveY + moveYAdd) + "px");
+                else if(moveY < 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top - moveYMin) + "px");
                 $(".dealbase" + currentDealBase).eq(currentEQ).css('left', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + moveX) + "px");
 
                 if( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + cardwidth < 0 || $(".dealbase" + currentDealBase).eq(currentEQ).position().left > window.innerWidth ){
@@ -1124,7 +1117,6 @@
                         moveX = 9;
                         moveY = 15;
                         moveYAdd = 0;
-                        topLimit = 0;
                     }
                     else if(currentDealBase == 4 && currentEQ >= 0){
                         currentDealBase = 1;
@@ -1132,19 +1124,15 @@
                         moveX = 9;
                         moveY = 15;
                         moveYAdd = 0;
-                        topLimit = 0;
                     }
                 }
 
                 trail(".dealbase" + currentDealBase,currentEQ);
+                console.log(moveYMin);
             }
 
             if(!end)window.requestAnimationFrame(win);
 
-        }
-
-        function bounceMax(low,high){
-            return ((high-low)*0.5)+low;
         }
 
         function trail(dealbase,eq){
