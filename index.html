@@ -605,6 +605,17 @@
                             elements[x].css("top",cardbasetopcss + (spacing * (toClassNameLength+x)));
                             elements[x].css("z-index",toClassNameLength+x+1);
                             elements[x].css('left',"");
+                            if(currentClassElements == "cardpilebase"){
+                                if(elements[x].hasClass("pile3")){
+                                    elements[x].removeClass("pile3");
+                                }
+                                if(elements[x].hasClass("pile2")){
+                                    elements[x].removeClass("pile2");
+                                }
+                                if(elements[x].hasClass("pile1")){
+                                    elements[x].removeClass("pile1");
+                                }
+                            }
                         }
 
                         // If card was from the cardpile
@@ -650,6 +661,17 @@
                                 elements[x].css("z-index",toClassNameLength+x+1);
                                 elements[x].css('left',"");
                                 elements[x].css('top',"");
+                                if(currentClassElements == "cardpilebase"){
+                                    if(elements[x].hasClass("pile3")){
+                                        elements[x].removeClass("pile3");
+                                    }
+                                    if(elements[x].hasClass("pile2")){
+                                        elements[x].removeClass("pile2");
+                                    }
+                                    if(elements[x].hasClass("pile1")){
+                                        elements[x].removeClass("pile1");
+                                    }
+                                }
                             }
 
                             // If card was from the cardpile
