@@ -436,20 +436,30 @@
                 if(orderDeckBaseCounter == 0){
                     var newleft = initialleft;
                     $(className).eq(x).css("left", newleft+"px");
-                    $(className).eq(x).css("z-index", 3);
+                    $(className).eq(x).css("z-index", x+2);
                     if(threeMode) orderDeckBaseCounter++;
                 }
                 else if(orderDeckBaseCounter == 1){
                     var newleft = initialleft - ( spacing * 1 );
                     $(className).eq(x).css("left", newleft+"px");
-                    $(className).eq(x).css("z-index", 2);
+                    $(className).eq(x).css("z-index", x);
                     if(threeMode) orderDeckBaseCounter++;
                 }
                 else if(orderDeckBaseCounter == 2){
                     var newleft = initialleft - ( spacing * 2 );
                     $(className).eq(x).css("left", newleft+"px");
-                    $(className).eq(x).css("z-index", 1);
+                    $(className).eq(x).css("z-index", x-2);
                     if(threeMode) orderDeckBaseCounter = 0;
+                }
+
+                if($(".cardpilebase").eq(x).hasClass("pile3")){
+                    $(".cardpilebase").eq(x).removeClass("pile3");
+                }
+                if($(".cardpilebase").eq(x).hasClass("pile2")){
+                    $(".cardpilebase").eq(x).removeClass("pile2");
+                }
+                if($(".cardpilebase").eq(x).hasClass("pile1")){
+                    $(".cardpilebase").eq(x).removeClass("pile1");
                 }
             }
         }
@@ -595,14 +605,41 @@
                             elements[x].css("top",cardbasetopcss + (spacing * (toClassNameLength+x)));
                             elements[x].css("z-index",toClassNameLength+x+1);
                             elements[x].css('left',"");
+                            if(currentClassElements == "cardpilebase"){
+                                if(elements[x].hasClass("pile3")){
+                                    elements[x].removeClass("pile3");
+                                }
+                                if(elements[x].hasClass("pile2")){
+                                    elements[x].removeClass("pile2");
+                                }
+                                if(elements[x].hasClass("pile1")){
+                                    elements[x].removeClass("pile1");
+                                }
+                            }
                         }
 
                         // If card was from the cardpile
                         if(currentClassElements == "cardpilebase"){
-                            for(var y = 0 ; y < $(".cardpilebase").length ; y++ ){
+                            for( var y = $(".cardpilebase").length - 1 ; y >= 0 ; y-- ){
                                 if(!$(".cardpilebase").eq(y).hasClass("cardpilehidden")){
-                                    $(".cardpilebase").eq(y).addClass("draggable");
-                                    break;
+                                    if($(".cardpilebase").eq(y).hasClass("pile1")){
+                                        if($(".cardpilebase").eq(y-1).hasClass("pile2") && $(".cardpilebase").eq(y-2).hasClass("pile3")){
+                                            $(".cardpilebase").eq(y-2).addClass("draggable");
+                                            break;
+                                        }
+                                        else if($(".cardpilebase").eq(y-1).hasClass("pile2")){
+                                            $(".cardpilebase").eq(y-1).addClass("draggable");
+                                            break;
+                                        }
+                                        else{
+                                            $(".cardpilebase").eq(y).addClass("draggable");
+                                            break;
+                                        }
+                                    }
+                                    else{
+                                        $(".cardpilebase").eq(y).addClass("draggable");
+                                        break;
+                                    }
                                 }
                             }
                             drawPileCounter--;
@@ -624,14 +661,41 @@
                                 elements[x].css("z-index",toClassNameLength+x+1);
                                 elements[x].css('left',"");
                                 elements[x].css('top',"");
+                                if(currentClassElements == "cardpilebase"){
+                                    if(elements[x].hasClass("pile3")){
+                                        elements[x].removeClass("pile3");
+                                    }
+                                    if(elements[x].hasClass("pile2")){
+                                        elements[x].removeClass("pile2");
+                                    }
+                                    if(elements[x].hasClass("pile1")){
+                                        elements[x].removeClass("pile1");
+                                    }
+                                }
                             }
 
                             // If card was from the cardpile
                             if(currentClassElements == "cardpilebase"){
-                                for(var y = 0 ; y < $(".cardpilebase").length ; y++ ){
+                                for( var y = $(".cardpilebase").length - 1 ; y >= 0 ; y-- ){
                                     if(!$(".cardpilebase").eq(y).hasClass("cardpilehidden")){
-                                        $(".cardpilebase").eq(y).addClass("draggable");
-                                        break;
+                                        if($(".cardpilebase").eq(y).hasClass("pile1")){
+                                            if($(".cardpilebase").eq(y-1).hasClass("pile2") && $(".cardpilebase").eq(y-2).hasClass("pile3")){
+                                                $(".cardpilebase").eq(y-2).addClass("draggable");
+                                                break;
+                                            }
+                                            else if($(".cardpilebase").eq(y-1).hasClass("pile2")){
+                                                $(".cardpilebase").eq(y-1).addClass("draggable");
+                                                break;
+                                            }
+                                            else{
+                                                $(".cardpilebase").eq(y).addClass("draggable");
+                                                break;
+                                            }
+                                        }
+                                        else{
+                                            $(".cardpilebase").eq(y).addClass("draggable");
+                                            break;
+                                        }
                                     }
                                 }
                                 drawPileCounter--;
@@ -657,14 +721,14 @@
                 }
                 else if(!cliptrue && currentClassElements.includes("cardpilebase")){
                     for(var x = 0 ; x < elements.length ; x++ ){
-                        if ( elements[x].css('z-index') == 3 ){
+                        if ( elements[x].attr('class').includes("pile3") ){
                             elements[x].css('left', pilebaseleftcss + "px");
                         }
-                        else if ( elements[x].css('z-index') == 2 ){
+                        else if ( elements[x].attr('class').includes("pile2") ){
                             var newleft = pilebaseleftcss - ( spacing * 1 );
                             elements[x].css('left', newleft + "px");
                         }
-                        else if ( elements[x].css('z-index') == 1 ){
+                        else if ( elements[x].attr('class').includes("pile1") ){
                             var newleft = pilebaseleftcss - ( spacing * 2 );
                             elements[x].css('left', newleft + "px");
                         }
@@ -677,6 +741,7 @@
             currentClassElements = "";
             openTopCard();
             setDraggable();
+            ifWin();
         }
 
         var suitCards = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
@@ -849,16 +914,47 @@
                 for ( var x = 0 ; x < cardPileBaseLength ; x++ ){
                     var drawPileAmount = 2;
                     if(!threeMode) drawPileAmount = 0;
-                    if( x >= drawPileCounter && x <= drawPileCounter + drawPileAmount ){
+                    if( x <= drawPileCounter + drawPileAmount ){
                         if($(".cardpilebase").eq(x).hasClass("cardpilehidden")){
                             $(".cardpilebase").eq(x).removeClass("cardpilehidden");
                         }
-                        if(openedCounter == 0){
-                            if(!$(".cardpilebase").eq(x).hasClass("draggable")){
-                                $(".cardpilebase").eq(x).addClass("draggable");
+                        if($(".cardpilebase").eq(x).hasClass("draggable")){
+                            $(".cardpilebase").eq(x).removeClass("draggable");
+                        }
+                        if(threeMode){
+                            if(x == drawPileCounter){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile3")){
+                                    $(".cardpilebase").eq(x).addClass("pile3");
+                                }
+                                if(!$(".cardpilebase").eq(x).hasClass("draggable")){
+                                    $(".cardpilebase").eq(x).addClass("draggable");
+                                }
+                                openedCounter++;
+                            }
+                            else if(x == drawPileCounter+1){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile2")){
+                                    $(".cardpilebase").eq(x).addClass("pile2");
+                                }
+                                openedCounter++;
+                            }
+                            else if(x == drawPileCounter+2){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile1")){
+                                    $(".cardpilebase").eq(x).addClass("pile1");
+                                }
+                                openedCounter++;
                             }
                         }
-                        openedCounter++;
+                        else{
+                            if(x == drawPileCounter){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile3")){
+                                    $(".cardpilebase").eq(x).addClass("pile3");
+                                }
+                                if(!$(".cardpilebase").eq(x).hasClass("draggable")){
+                                    $(".cardpilebase").eq(x).addClass("draggable");
+                                }
+                                openedCounter++;
+                            }
+                        }
                     }
                     else{
                         if(!$(".cardpilebase").eq(x).hasClass("cardpilehidden")){
@@ -912,6 +1008,7 @@
             suitsName = ["spade","diamond","club","heart"];
 
             var initialGameArea = "";
+
             initialGameArea = initialGameArea + '<div class="cardpilebasebg cardback" onclick="drawPile()"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
             initialGameArea = initialGameArea + '<div class="cards cardpilebase cardpilehidden"></div>';
@@ -991,6 +1088,147 @@
             orderDeckBase();
             setDraggable();
             loadDeckCards();
+        }
+
+        var startTime = Date.now();
+        var moveX = 9;
+        var moveY = 15;
+        var moveYAdd = 0;
+        var moveYMin = 0;
+        var tick = 0;
+        var end = false;
+
+        var currentDealBase = 1;
+        var currentEQ = 12;
+        function win(){
+
+            if( Date.now() - startTime >= tick ){
+
+                startTime = Date.now();
+
+                if( moveYMin <= 0 && moveY < 0 ){
+                    moveYMin = 0;
+                    if(moveY < 0) moveY = moveY * -1;
+                }
+                else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength >= window.innerHeight ){
+                    moveYAdd = 0;
+                    moveYMin *= 0.7;
+                    if(moveYMin < 7) moveYMin = 7;
+                    if(moveY > 0) moveY = moveY * -1;
+                }
+
+                if(moveY < 0){
+                    moveYMin -= 2;
+                }
+                else if(moveY > 0){
+                    moveYMin = moveYAdd + 2;
+                    if( window.innerHeight < ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveYAdd) ){
+                        moveYAdd = window.innerHeight - ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength);
+                    }
+                    else{
+                        moveYAdd += 2;
+                    }
+                }
+
+                if(moveY > 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + moveYAdd) + "px");
+                else if(moveY < 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top - moveYMin) + "px");
+                $(".dealbase" + currentDealBase).eq(currentEQ).css('left', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + moveX) + "px");
+
+                if( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + cardwidth < 0 || $(".dealbase" + currentDealBase).eq(currentEQ).position().left > window.innerWidth ){
+                    if(currentDealBase == 4 && currentEQ == 0){
+                        end = true;
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                        deleteTrail();
+                    }
+                    else if(currentDealBase < 4 && currentEQ >= 0){
+                        currentDealBase++;
+                        moveX = randomNumber(-15,15);
+                        moveY = randomNumber(-30,30);
+                        moveYAdd = moveX;
+                        moveYMin = 0;
+                    }
+                    else if(currentDealBase == 4 && currentEQ >= 0){
+                        currentDealBase = 1;
+                        currentEQ--;
+                        moveX = randomNumber(-15,15);
+                        moveY = randomNumber(-30,30);
+                        moveYAdd = moveX;
+                        moveYMin = 0;
+                    }
+                }
+
+                trail(".dealbase" + currentDealBase,currentEQ);
+            }
+
+            if(!end)window.requestAnimationFrame(win);
+
+        }
+
+        var currentZIndex = 100;
+        function trail(dealbase,eq){
+            var className = $(dealbase).eq(eq).attr("class");
+            var newClassName = "trail cards";
+            for (var x = 0 ; x < suitCards.length ; x++ ){
+                if(className.includes(suitCards[x])){
+                    newClassName = newClassName + " " + suitCards[x];
+                }
+            }
+
+            if(className.includes("spade")){
+                newClassName = newClassName + " spade";
+            }
+            else if(className.includes("diamond")){
+                newClassName = newClassName + " diamond";
+            }
+            else if(className.includes("club")){
+                newClassName = newClassName + " club";
+            }
+            else if(className.includes("heart")){
+                newClassName = newClassName + " heart";
+            }
+
+            $(".gamearea").append("<div class=\"" + newClassName + "\" style=\"top: "+$(dealbase).eq(eq).position().top+"px; left: "+$(dealbase).eq(eq).position().left+"px; z-index: "+(currentZIndex++)+";\"></div>");
+
+            deleteTrail();
+        }
+
+        var maxTrail = 10;
+        function deleteTrail(){
+            if(currentZIndex - 100 > maxTrail){
+                $(".trail").eq(0).remove();
+            }
+        }
+
+        function ifWin(){
+            var dealbase1Number = $(".dealbase1").length;
+            var dealbase2Number = $(".dealbase2").length;
+            var dealbase3Number = $(".dealbase3").length;
+            var dealbase4Number = $(".dealbase4").length;
+
+            if( dealbase1Number == 13 && dealbase2Number == 13 && dealbase3Number == 13 && dealbase4Number == 13 ){
+                window.requestAnimationFrame(win);
+            }
+        }
+
+        function randomNumber(min,max){
+            if(min < -5 && max > 5){
+                var returnVal = 0;
+                while (returnVal < 5 && returnVal > -5){
+                    returnVal = Math.floor(Math.random() * (max - min + 1)) + min;
+                }
+                return returnVal;
+            }
+            else{
+                if( Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1 ) return 5;
+                else return -5;
+            }
         }
 
         /// On document ready call
