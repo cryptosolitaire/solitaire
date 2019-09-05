@@ -894,6 +894,9 @@
                         if($(".cardpilebase").eq(x).hasClass("cardpilehidden")){
                             $(".cardpilebase").eq(x).removeClass("cardpilehidden");
                         }
+                        if($(".cardpilebase").eq(x).hasClass("draggable")){
+                            $(".cardpilebase").eq(x).removeClass("draggable");
+                        }
                         if(threeMode){
                             if(x == drawPileCounter){
                                 if(!$(".cardpilebase").eq(x).hasClass("pile3")){
