@@ -677,23 +677,25 @@
                             // If card was from the cardpile
                             if(currentClassElements == "cardpilebase"){
                                 for( var y = $(".cardpilebase").length - 1 ; y >= 0 ; y-- ){
-                                    if($(".cardpilebase").eq(y).hasClass("pile1")){
-                                        if($(".cardpilebase").eq(y-1).hasClass("pile2") && $(".cardpilebase").eq(y-2).hasClass("pile3")){
-                                            $(".cardpilebase").eq(y-2).addClass("draggable");
-                                            break;
-                                        }
-                                        else if($(".cardpilebase").eq(y-1).hasClass("pile2")){
-                                            $(".cardpilebase").eq(y-1).addClass("draggable");
-                                            break;
+                                    if(!$(".cardpilebase").eq(y).hasClass("cardpilehidden")){
+                                        if($(".cardpilebase").eq(y).hasClass("pile1")){
+                                            if($(".cardpilebase").eq(y-1).hasClass("pile2") && $(".cardpilebase").eq(y-2).hasClass("pile3")){
+                                                $(".cardpilebase").eq(y-2).addClass("draggable");
+                                                break;
+                                            }
+                                            else if($(".cardpilebase").eq(y-1).hasClass("pile2")){
+                                                $(".cardpilebase").eq(y-1).addClass("draggable");
+                                                break;
+                                            }
+                                            else{
+                                                $(".cardpilebase").eq(y).addClass("draggable");
+                                                break;
+                                            }
                                         }
                                         else{
                                             $(".cardpilebase").eq(y).addClass("draggable");
                                             break;
                                         }
-                                    }
-                                    else{
-                                        $(".cardpilebase").eq(y).addClass("draggable");
-                                        break;
                                     }
                                 }
                                 drawPileCounter--;
