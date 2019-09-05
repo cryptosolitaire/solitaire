@@ -436,20 +436,30 @@
                 if(orderDeckBaseCounter == 0){
                     var newleft = initialleft;
                     $(className).eq(x).css("left", newleft+"px");
-                    $(className).eq(x).css("z-index", 3);
+                    $(className).eq(x).css("z-index", x+2);
                     if(threeMode) orderDeckBaseCounter++;
                 }
                 else if(orderDeckBaseCounter == 1){
                     var newleft = initialleft - ( spacing * 1 );
                     $(className).eq(x).css("left", newleft+"px");
-                    $(className).eq(x).css("z-index", 2);
+                    $(className).eq(x).css("z-index", x);
                     if(threeMode) orderDeckBaseCounter++;
                 }
                 else if(orderDeckBaseCounter == 2){
                     var newleft = initialleft - ( spacing * 2 );
                     $(className).eq(x).css("left", newleft+"px");
-                    $(className).eq(x).css("z-index", 1);
+                    $(className).eq(x).css("z-index", x-2);
                     if(threeMode) orderDeckBaseCounter = 0;
+                }
+
+                if($(".cardpilebase").eq(x).hasClass("pile3")){
+                    $(".cardpilebase").eq(x).removeClass("pile3");
+                }
+                if($(".cardpilebase").eq(x).hasClass("pile2")){
+                    $(".cardpilebase").eq(x).removeClass("pile2");
+                }
+                if($(".cardpilebase").eq(x).hasClass("pile1")){
+                    $(".cardpilebase").eq(x).removeClass("pile1");
                 }
             }
         }
@@ -657,14 +667,14 @@
                 }
                 else if(!cliptrue && currentClassElements.includes("cardpilebase")){
                     for(var x = 0 ; x < elements.length ; x++ ){
-                        if ( elements[x].css('z-index') == 3 ){
+                        if ( elements[x].attr('class').includes("pile3") ){
                             elements[x].css('left', pilebaseleftcss + "px");
                         }
-                        else if ( elements[x].css('z-index') == 2 ){
+                        else if ( elements[x].attr('class').includes("pile2") ){
                             var newleft = pilebaseleftcss - ( spacing * 1 );
                             elements[x].css('left', newleft + "px");
                         }
-                        else if ( elements[x].css('z-index') == 1 ){
+                        else if ( elements[x].attr('class').includes("pile1") ){
                             var newleft = pilebaseleftcss - ( spacing * 2 );
                             elements[x].css('left', newleft + "px");
                         }
@@ -850,16 +860,44 @@
                 for ( var x = 0 ; x < cardPileBaseLength ; x++ ){
                     var drawPileAmount = 2;
                     if(!threeMode) drawPileAmount = 0;
-                    if( x >= drawPileCounter && x <= drawPileCounter + drawPileAmount ){
+                    if( x <= drawPileCounter + drawPileAmount ){
                         if($(".cardpilebase").eq(x).hasClass("cardpilehidden")){
                             $(".cardpilebase").eq(x).removeClass("cardpilehidden");
                         }
-                        if(openedCounter == 0){
-                            if(!$(".cardpilebase").eq(x).hasClass("draggable")){
-                                $(".cardpilebase").eq(x).addClass("draggable");
+                        if(threeMode){
+                            if(x == drawPileCounter){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile3")){
+                                    $(".cardpilebase").eq(x).addClass("pile3");
+                                }
+                                if(!$(".cardpilebase").eq(x).hasClass("draggable")){
+                                    $(".cardpilebase").eq(x).addClass("draggable");
+                                }
+                                openedCounter++;
+                            }
+                            else if(x == drawPileCounter+1){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile2")){
+                                    $(".cardpilebase").eq(x).addClass("pile2");
+                                }
+                                openedCounter++;
+                            }
+                            else if(x == drawPileCounter+2){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile1")){
+                                    $(".cardpilebase").eq(x).addClass("pile1");
+                                }
+                                openedCounter++;
                             }
                         }
-                        openedCounter++;
+                        else{
+                            if(x == drawPileCounter){
+                                if(!$(".cardpilebase").eq(x).hasClass("pile3")){
+                                    $(".cardpilebase").eq(x).addClass("pile3");
+                                }
+                                if(!$(".cardpilebase").eq(x).hasClass("draggable")){
+                                    $(".cardpilebase").eq(x).addClass("draggable");
+                                }
+                                openedCounter++;
+                            }
+                        }
                     }
                     else{
                         if(!$(".cardpilebase").eq(x).hasClass("cardpilehidden")){
