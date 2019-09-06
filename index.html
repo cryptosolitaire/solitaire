@@ -1113,8 +1113,9 @@
                 if( moveYAdd <= 0 && direction < 0 ){
                     if(direction < 0) direction = direction * -1;
                 }
-                else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveYAdd >= window.innerHeight && direction > 0 ){
+                else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength >= window.innerHeight && direction > 0 ){
                     if(direction > 0) direction = direction * -1;
+                    moveYAdd *= 0.7;
                 }
 
                 if(direction < 0){
@@ -1131,7 +1132,11 @@
                 }
 
                 if(direction > 0 && altermoveYAdd == 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + moveYAdd) + "px");
-                else if(direction > 0 && altermoveYAdd != 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + altermoveYAdd) + "px");
+                else if(direction > 0 && altermoveYAdd != 0){
+                    $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + altermoveYAdd) + "px");
+                    if(direction > 0) direction = direction * -1;
+                    moveYAdd *= 0.7;
+                }
                 else if(direction < 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top - moveYAdd) + "px");
 
                 $(".dealbase" + currentDealBase).eq(currentEQ).css('left', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + moveX) + "px");
@@ -1157,8 +1162,8 @@
                                 break;
                             }
                         }
-                        moveX = //randomNumber(-15,15);
-                        moveY = //randomNumber(-30,30);
+                        moveX = randomNumber(-15,15);
+                        moveY = randomNumber(-30,30);
                         moveYAdd = moveX;
                         direction = 1;
                     }
@@ -1171,8 +1176,8 @@
                                 break;
                             }
                         }
-                        moveX = //randomNumber(-15,15);
-                        moveY = //randomNumber(-30,30);
+                        moveX = randomNumber(-15,15);
+                        moveY = randomNumber(-30,30);
                         moveYAdd = moveX;
                         direction = 1;
                     }
