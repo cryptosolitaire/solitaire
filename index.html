@@ -1096,7 +1096,8 @@
         var moveX = 9;
         var moveY = 15;
         var moveYAdd = 0;
-        var moveYMin = 0;
+        var altermoveYAdd = 0;
+        var direction = 1;
         var tick = 0;
         var end = false;
 
@@ -1109,32 +1110,30 @@
 
                 startTime = Date.now();
 
-                if( moveYMin <= 0 && moveY < 0 ){
-                    moveYMin = 0;
-                    if(moveY < 0) moveY = moveY * -1;
+                if( moveYAdd <= 0 && direction < 0 ){
+                    if(direction < 0) direction = direction * -1;
                 }
-                else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength >= window.innerHeight ){
-                    moveYAdd = 0;
-                    moveYMin *= 0.7;
-                    if(moveYMin < 7) moveYMin = 7;
-                    if(moveY > 0) moveY = moveY * -1;
+                else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveYAdd >= window.innerHeight && direction > 0 ){
+                    if(direction > 0) direction = direction * -1;
                 }
 
-                if(moveY < 0){
-                    moveYMin -= 2;
+                if(direction < 0){
+                    moveYAdd -= 2;
                 }
-                else if(moveY > 0){
-                    moveYMin = moveYAdd + 2;
+                else if(direction > 0){
                     if( window.innerHeight < ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength + moveYAdd) ){
-                        moveYAdd = window.innerHeight - ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength);
+                        altermoveYAdd = window.innerHeight - ($(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength);
                     }
                     else{
                         moveYAdd += 2;
+                        altermoveYAdd = 0;
                     }
                 }
 
-                if(moveY > 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + moveYAdd) + "px");
-                else if(moveY < 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top - moveYMin) + "px");
+                if(direction > 0 && altermoveYAdd == 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + moveYAdd) + "px");
+                else if(direction > 0 && altermoveYAdd != 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + altermoveYAdd) + "px");
+                else if(direction < 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top - moveYAdd) + "px");
+
                 $(".dealbase" + currentDealBase).eq(currentEQ).css('left', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + moveX) + "px");
 
                 if( $(".dealbase" + currentDealBase).eq(currentEQ).position().left + cardwidth < 0 || $(".dealbase" + currentDealBase).eq(currentEQ).position().left > window.innerWidth ){
@@ -1158,10 +1157,10 @@
                                 break;
                             }
                         }
-                        moveX = randomNumber(-15,15);
-                        moveY = randomNumber(-30,30);
+                        moveX = //randomNumber(-15,15);
+                        moveY = //randomNumber(-30,30);
                         moveYAdd = moveX;
-                        moveYMin = 0;
+                        direction = 1;
                     }
                     else if(currentDealBase == 4 && currentZIndex >= 1){
                         currentDealBase = 1;
@@ -1172,10 +1171,10 @@
                                 break;
                             }
                         }
-                        moveX = randomNumber(-15,15);
-                        moveY = randomNumber(-30,30);
+                        moveX = //randomNumber(-15,15);
+                        moveY = //randomNumber(-30,30);
                         moveYAdd = moveX;
-                        moveYMin = 0;
+                        direction = 1;
                     }
                 }
 
