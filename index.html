@@ -1100,6 +1100,7 @@
         var direction = 1;
         var tick = 0;
         var end = false;
+        var bounceStr = 0.7;
 
         var currentDealBase = 1;
         var currentEQ = 0;
@@ -1115,7 +1116,7 @@
                 }
                 else if( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + cardlength >= window.innerHeight && direction > 0 ){
                     if(direction > 0) direction = direction * -1;
-                    moveYAdd *= 0.7;
+                    moveYAdd *= bounceStr;
                 }
 
                 if(direction < 0){
@@ -1135,7 +1136,7 @@
                 else if(direction > 0 && altermoveYAdd != 0){
                     $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top + altermoveYAdd) + "px");
                     if(direction > 0) direction = direction * -1;
-                    moveYAdd *= 0.7;
+                    moveYAdd *= bounceStr;
                 }
                 else if(direction < 0) $(".dealbase" + currentDealBase).eq(currentEQ).css('top', ( $(".dealbase" + currentDealBase).eq(currentEQ).position().top - moveYAdd) + "px");
 
