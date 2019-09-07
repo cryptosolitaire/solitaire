@@ -531,6 +531,9 @@
                             }
                         }
                     }
+                    if(elements.length == 1){
+                        clicks();
+                    }
                 }
             }
             else if(eClassName.includes("dealbase")){
@@ -549,6 +552,7 @@
                 if($(elementFromPoint).hasClass("draggable")){
                     currentClassElements = "cardpilebase";
                     elements.push($(elementFromPoint));
+                    clicks();
                 }
 
                 for(var x = 0 ; x < elements.length ; x++ ){
@@ -562,6 +566,9 @@
             precursorY = cursorY;
             cursorX = event.clientX;
             cursorY = event.clientY;
+            if(elements.length > 0){
+                clickCount = 0;
+            }
 
             for(var x = 0 ; x < elements.length ; x++ ){
                 var temp = parseInt(elements[x].css("top"));
@@ -1253,6 +1260,24 @@
                 if( Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1 ) return 5;
                 else return -5;
             }
+        }
+
+        var clickTime = Date.now();
+        var clickCount = 0;
+        var timeout = 500;
+        function clicks() {
+            if (clickCount == 1) {
+                if(Date.now() - clickTime <= 500){
+                    console.log("Double click");
+                    clickCount = 0;
+                }
+            }
+
+            setTimeout(function(){
+                clickCount = 0;
+            }, timeout);
+            clickCount++;
+            clickTime = Date.now();
         }
 
         /// On document ready call
