@@ -531,6 +531,9 @@
                             }
                         }
                     }
+                    if(elements.length == 1){
+                        clicks();
+                    }
                 }
             }
             else if(eClassName.includes("dealbase")){
@@ -543,6 +546,51 @@
 
                 for(var x = 0 ; x < elements.length ; x++ ){
                     elements[x].css("z-index" , parseInt(elements[x].css("z-index")) + 100 );
+                }
+            }
+            else if(eClassName.includes("cardpilebase")){
+                if($(elementFromPoint).hasClass("draggable")){
+                    currentClassElements = "cardpilebase";
+                    elements.push($(elementFromPoint));
+                    clicks();
+                }
+
+                for(var x = 0 ; x < elements.length ; x++ ){
+                    elements[x].css("z-index" , parseInt(elements[x].css("z-index")) + 100 );
+                }
+            }
+        }
+
+        function mousedownDoubleClick(){
+            var elementFromPoint = document.elementFromPoint(cursorX, cursorY);
+            var eClassName = elementFromPoint.className;
+            var eZIndex = parseInt(document.elementFromPoint(cursorX, cursorY).style.zIndex);
+
+            if(eClassName.includes("cardplaybase")){
+                var className = eClassName.substr(eClassName.indexOf("cardplaybase"),13);
+
+                if($(elementFromPoint).hasClass("draggable")){
+                    currentClassElements = className;
+                    elements.push($(elementFromPoint));
+                    for(var x = 0 ; x < $("."+className).length ; x++){
+                        if( $("."+className).eq(x).css("z-index") > eZIndex ){
+                            elements.push($("."+className).eq(x));
+                        }
+                    }
+
+                    for(var x = 0 ; x < elements.length ; x++ ){
+                        elements[x].css("z-index" , parseInt(elements[x].css("z-index")) + 100 );
+                    }
+
+                    for(var x = 0 ; x < elements.length ; x++ ){
+                        for(var y = 0 ; y < elements.length-1 ; y++ ){
+                            if( parseInt(elements[y].css("z-index")) > parseInt(elements[y+1].css("z-index")) ){
+                                var temp = elements[y];
+                                elements[y] = elements[y+1];
+                                elements[y+1] = temp;
+                            }
+                        }
+                    }
                 }
             }
             else if(eClassName.includes("cardpilebase")){
@@ -562,6 +610,9 @@
             precursorY = cursorY;
             cursorX = event.clientX;
             cursorY = event.clientY;
+            if(elements.length > 0){
+                clickCount = 0;
+            }
 
             for(var x = 0 ; x < elements.length ; x++ ){
                 var temp = parseInt(elements[x].css("top"));
@@ -735,6 +786,65 @@
                         elements[x].css('top', pilebasetopcss + "px");
                     }
                 }
+            }
+
+            elements = [];
+            currentClassElements = "";
+            openTopCard();
+            setDraggable();
+            ifWin();
+        }
+
+        function mouseupDoubleClick(toDealBase){
+            for(var x = 0 ; x < elements.length ; x++ ){
+                elements[x].css("z-index" , parseInt(elements[x].css("z-index")) - 100 );
+            }
+
+            var toClassNameLength = $("."+toDealBase).length;
+            for(var x = 0 ; x < elements.length ; x++ ){
+                elements[x].removeClass(currentClassElements).addClass(toDealBase);
+                elements[x].css("top",cardbasetopcss);
+                elements[x].css("z-index",toClassNameLength+x);
+                elements[x].css('left',"");
+                elements[x].css('top',"");
+                if(currentClassElements == "cardpilebase"){
+                    if(elements[x].hasClass("pile3")){
+                        elements[x].removeClass("pile3");
+                    }
+                    if(elements[x].hasClass("pile2")){
+                        elements[x].removeClass("pile2");
+                    }
+                    if(elements[x].hasClass("pile1")){
+                        elements[x].removeClass("pile1");
+                    }
+                }
+            }
+
+            // If card was from the cardpile
+            if(currentClassElements == "cardpilebase"){
+                for( var y = $(".cardpilebase").length - 1 ; y >= 0 ; y-- ){
+                    if(!$(".cardpilebase").eq(y).hasClass("cardpilehidden")){
+                        if($(".cardpilebase").eq(y).hasClass("pile1")){
+                            if($(".cardpilebase").eq(y-1).hasClass("pile2") && $(".cardpilebase").eq(y-2).hasClass("pile3")){
+                                $(".cardpilebase").eq(y-2).addClass("draggable");
+                                break;
+                            }
+                            else if($(".cardpilebase").eq(y-1).hasClass("pile2")){
+                                $(".cardpilebase").eq(y-1).addClass("draggable");
+                                break;
+                            }
+                            else{
+                                $(".cardpilebase").eq(y).addClass("draggable");
+                                break;
+                            }
+                        }
+                        else{
+                            $(".cardpilebase").eq(y).addClass("draggable");
+                            break;
+                        }
+                    }
+                }
+                drawPileCounter--;
             }
 
             elements = [];
@@ -1252,6 +1362,91 @@
             else{
                 if( Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1 ) return 5;
                 else return -5;
+            }
+        }
+
+        var clickTime = Date.now();
+        var clickCount = 0;
+        var timeout = 500;
+        function clicks() {
+            if (clickCount == 1) {
+                if(Date.now() - clickTime <= 500){
+                    doubleClick();
+                    clickCount = 0;
+                }
+            }
+
+            setTimeout(function(){
+                clickCount = 0;
+            }, timeout);
+            clickCount++;
+            clickTime = Date.now();
+        }
+
+        function doubleClick(){
+            var elementFromPoint = document.elementFromPoint(cursorX, cursorY);
+            var eClassName = elementFromPoint.className;
+
+            var elementCardSuit;
+            if(eClassName.includes("spade")){
+                elementCardSuit = "spade";
+            }
+            else if(eClassName.includes("diamond")){
+                elementCardSuit = "diamond";
+            }
+            else if(eClassName.includes("club")){
+                elementCardSuit = "club";
+            }
+            else if(eClassName.includes("heart")){
+                elementCardSuit = "heart";
+            }
+
+            var elementCard;
+            for (var x = 0 ; x < suitCards.length ; x++ ){
+                if(eClassName.includes(suitCards[x])){
+                    elementCard = suitCards[x];
+                    break;
+                }
+            }
+
+            var canClip = false;
+            var toDealBase = "";
+            if(elementCard == "cardace" && $(".dealbase1").length == 0){
+                canClip = true;
+                toDealBase = "dealbase1";
+            }
+            else if(elementCard == "cardace" && $(".dealbase2").length == 0){
+                canClip = true;
+                toDealBase = "dealbase2";
+            }
+            else if(elementCard == "cardace" && $(".dealbase3").length == 0){
+                canClip = true;
+                toDealBase = "dealbase3";
+            }
+            else if(elementCard == "cardace" && $(".dealbase4").length == 0){
+                canClip = true;
+                toDealBase = "dealbase4";
+            }
+            else if($(".dealbase1").length > 0 && $(".dealbase1").eq($(".dealbase1").length-1).attr("class").includes(elementCardSuit) && suitCards[$(".dealbase1").length] == elementCard){
+                canClip = true;
+                toDealBase = "dealbase1";
+            }
+            else if($(".dealbase2").length > 0 && $(".dealbase2").eq($(".dealbase2").length-1).attr("class").includes(elementCardSuit) && suitCards[$(".dealbase2").length] == elementCard){
+                canClip = true;
+                toDealBase = "dealbase2";
+            }
+            else if($(".dealbase3").length > 0 && $(".dealbase3").eq($(".dealbase3").length-1).attr("class").includes(elementCardSuit) && suitCards[$(".dealbase3").length] == elementCard){
+                canClip = true;
+                toDealBase = "dealbase3";
+            }
+            else if($(".dealbase4").length > 0 && $(".dealbase4").eq($(".dealbase4").length-1).attr("class").includes(elementCardSuit) && suitCards[$(".dealbase4").length] == elementCard){
+                canClip = true;
+                toDealBase = "dealbase4";
+            }
+
+            if(canClip){
+                mousedownDoubleClick();
+                mouseupDoubleClick(toDealBase);
             }
         }
 
