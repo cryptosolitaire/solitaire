@@ -502,6 +502,14 @@
 
         /// Dragging Cards function
         function mousedown(mouseClick = true){
+            if(elements.length != 0){
+                for(var x = 0 ; x < elements.length && mouseClick ; x++ ){
+                    elements[x].css("z-index" , parseInt(elements[x].css("z-index")) - 100 );
+                }
+                elements = [];
+                currentClassElements = "";
+            }
+
             var elementFromPoint = document.elementFromPoint(cursorX, cursorY);
             var eClassName = elementFromPoint.className;
             var eZIndex = parseInt(document.elementFromPoint(cursorX, cursorY).style.zIndex);
