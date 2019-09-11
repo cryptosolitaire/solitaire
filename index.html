@@ -760,6 +760,7 @@
 
         var suitCards = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
         function clipToCardBase(cardbase,element){
+            if(element == undefined) return false;
 
             var cardbaseElement;
             var cardbasesuitcolor;
@@ -817,6 +818,8 @@
         }
 
         function clipToDealBase(dealbase,element){
+            if(element == undefined) return false;
+
             var dealbasesuitElement;
             var dealbasesuit;
             var dealbasesuitcard;
@@ -1294,108 +1297,110 @@
             dragPaused = true;
             mousedown(false);
 
-            var tempcursorX = cursorX;
-            var tempcursorY = cursorY;
+            if(elements.length > 0){
+                var tempcursorX = cursorX;
+                var tempcursorY = cursorY;
 
-            if(elements[0].attr("class").includes("cardace")){
-                if($(".dealbase1").length == 0){
-                    cursorX = dealbaseleftcss["dealbase1"];
-                    cursorY = dealbasetopcss;
+                if(elements[0].attr("class").includes("cardace")){
+                    if($(".dealbase1").length == 0){
+                        cursorX = dealbaseleftcss["dealbase1"];
+                        cursorY = dealbasetopcss;
+                    }
+                    else if($(".dealbase2").length == 0){
+                        cursorX = dealbaseleftcss["dealbase2"];
+                        cursorY = dealbasetopcss;
+                    }
+                    else if($(".dealbase3").length == 0){
+                        cursorX = dealbaseleftcss["dealbase3"];
+                        cursorY = dealbasetopcss;
+                    }
+                    else if($(".dealbase4").length == 0){
+                        cursorX = dealbaseleftcss["dealbase4"];
+                        cursorY = dealbasetopcss;
+                    }
                 }
-                else if($(".dealbase2").length == 0){
-                    cursorX = dealbaseleftcss["dealbase2"];
-                    cursorY = dealbasetopcss;
+                else if(elements.length == 1){
+                    if(clipToDealBase("dealbase1",elements[0])){
+                        cursorX = dealbaseleftcss["dealbase1"];
+                        cursorY = dealbasetopcss;
+                    }
+                    else if(clipToDealBase("dealbase2",elements[0])){
+                        cursorX = dealbaseleftcss["dealbase2"];
+                        cursorY = dealbasetopcss;
+                    }
+                    else if(clipToDealBase("dealbase3",elements[0])){
+                        cursorX = dealbaseleftcss["dealbase3"];
+                        cursorY = dealbasetopcss;
+                    }
+                    else if(clipToDealBase("dealbase4",elements[0])){
+                        cursorX = dealbaseleftcss["dealbase4"];
+                        cursorY = dealbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase1",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase1"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase2",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase2"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase3",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase3"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase4",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase4"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase5",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase5"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase6",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase6"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase7",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase7"];
+                        cursorY = cardbasetopcss;
+                    }
                 }
-                else if($(".dealbase3").length == 0){
-                    cursorX = dealbaseleftcss["dealbase3"];
-                    cursorY = dealbasetopcss;
+                else{
+                    if(clipToCardBase("cardplaybase1",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase1"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase2",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase2"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase3",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase3"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase4",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase4"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase5",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase5"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase6",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase6"];
+                        cursorY = cardbasetopcss;
+                    }
+                    else if(clipToCardBase("cardplaybase7",elements[0])){
+                        cursorX = cardbaseleftcss["cardplaybase7"];
+                        cursorY = cardbasetopcss;
+                    }
                 }
-                else if($(".dealbase4").length == 0){
-                    cursorX = dealbaseleftcss["dealbase4"];
-                    cursorY = dealbasetopcss;
-                }
-            }
-            else if(elements.length == 1){
-                if(clipToDealBase("dealbase1",elements[0])){
-                    cursorX = dealbaseleftcss["dealbase1"];
-                    cursorY = dealbasetopcss;
-                }
-                else if(clipToDealBase("dealbase2",elements[0])){
-                    cursorX = dealbaseleftcss["dealbase2"];
-                    cursorY = dealbasetopcss;
-                }
-                else if(clipToDealBase("dealbase3",elements[0])){
-                    cursorX = dealbaseleftcss["dealbase3"];
-                    cursorY = dealbasetopcss;
-                }
-                else if(clipToDealBase("dealbase4",elements[0])){
-                    cursorX = dealbaseleftcss["dealbase4"];
-                    cursorY = dealbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase1",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase1"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase2",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase2"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase3",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase3"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase4",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase4"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase5",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase5"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase6",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase6"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase7",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase7"];
-                    cursorY = cardbasetopcss;
-                }
-            }
-            else{
-                if(clipToCardBase("cardplaybase1",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase1"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase2",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase2"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase3",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase3"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase4",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase4"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase5",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase5"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase6",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase6"];
-                    cursorY = cardbasetopcss;
-                }
-                else if(clipToCardBase("cardplaybase7",elements[0])){
-                    cursorX = cardbaseleftcss["cardplaybase7"];
-                    cursorY = cardbasetopcss;
-                }
+
+                mouseup(false);
+                cursorX = tempcursorX;
+                cursorY = tempcursorY;
             }
 
-            mouseup(false);
-
-            cursorX = tempcursorX;
-            cursorY = tempcursorY;
             dragPaused = false;
         }
 
