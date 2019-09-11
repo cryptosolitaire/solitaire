@@ -1272,24 +1272,30 @@
         var clickTime = Date.now();
         var clickCount = 0;
         var timeout = 500;
+        var timeoutVar;
         function clicks() {
             if (clickCount == 1) {
                 if(Date.now() - clickTime <= 500){
                     doubleClick();
                     clickCount = 0;
+                    clearTimeout(timeoutVar);
                 }
             }
-
-            setTimeout(function(){
-                clickCount = 0;
-            }, timeout);
-            clickCount++;
-            clickTime = Date.now();
+            else{
+                timeoutVar = setTimeout(function(){
+                    clickCount = 0;
+                }, timeout);
+                clickCount++;
+                clickTime = Date.now();
+            }
         }
 
         function doubleClick(){
             dragPaused = true;
             mousedown(false);
+
+            var tempcursorX = cursorX;
+            var tempcursorY = cursorY;
 
             if(elements[0].attr("class").includes("cardace")){
                 if($(".dealbase1").length == 0){
@@ -1387,6 +1393,9 @@
             }
 
             mouseup(false);
+
+            cursorX = tempcursorX;
+            cursorY = tempcursorY;
             dragPaused = false;
         }
 
