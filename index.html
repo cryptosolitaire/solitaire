@@ -1283,6 +1283,13 @@
                     clickCount = 0;
                     clearTimeout(timeoutVar);
                 }
+                else{
+                    timeoutVar = setTimeout(function(){
+                        clickCount = 0;
+                    }, timeout);
+                    clickCount++;
+                    clickTime = Date.now();
+                }
             }
             else{
                 timeoutVar = setTimeout(function(){
