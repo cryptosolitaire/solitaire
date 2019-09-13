@@ -604,13 +604,15 @@
                 elements[x].css("z-index" , parseInt(elements[x].css("z-index")) - 100 );
             }
 
-            var eClassName = document.elementFromPoint(cursorX, cursorY).className;
-            if(eClassName.includes("cardplaybase") || eClassName.includes("dealbase") || eClassName.includes("cardpilebase") || !mouseClick){
+            if(currentClassElements.includes("cardplaybase") || currentClassElements.includes("dealbase") || currentClassElements.includes("cardpilebase") || !mouseClick){
                 var cliptrue = false;
 
                 // If card was drag to cardbase
                 for (const [key, value] of Object.entries(cardbaseleftcss)) {
-                    if( cursorX >= value && cursorX <= value + cardwidth && cursorY >= cardbasetopcss && key != currentClassElements && clipToCardBase(key,elements[0]) ){
+                    if( (( cursorX >= value && cursorX <= value + cardwidth && cursorY >= cardbasetopcss) ||
+                    (elements[0].position().left >= value && elements[0].position().left <= value + cardwidth && elements[0].position().top >= cardbasetopcss) ||
+                    (elements[0].position().left + cardwidth >= value && elements[0].position().left + cardwidth <= value + cardwidth && elements[0].position().top >= cardbasetopcss) )
+                    && key != currentClassElements && clipToCardBase(key,elements[0]) ){
                         cliptrue = true;
                         var toClassNameLength = $("."+key).length;
                         for(var x = 0 ; x < elements.length ; x++ ){
@@ -665,7 +667,12 @@
                 // If Card was drag to dealbase
                 if(elements.length == 1){
                     for (const [key, value] of Object.entries(dealbaseleftcss)) {
-                        if( cursorX >= value && cursorX <= value + cardwidth && cursorY >= dealbasetopcss && cursorY <= dealbasetopcss + cardlength && clipToDealBase(key,elements[0]) ){
+                        if( ((cursorX >= value && cursorX <= value + cardwidth && cursorY >= dealbasetopcss && cursorY <= dealbasetopcss + cardlength) ||
+                        (elements[0].position().left >= value && elements[0].position().left <= value + cardwidth && elements[0].position().top >= dealbasetopcss && elements[0].position().top <= dealbasetopcss + cardlength) ||
+                        (elements[0].position().left >= value && elements[0].position().left <= value + cardwidth && elements[0].position().top + cardlength >= dealbasetopcss && elements[0].position().top + cardlength <= dealbasetopcss + cardlength) ||
+                        (elements[0].position().left + cardwidth >= value && elements[0].position().left + cardwidth <= value + cardwidth && elements[0].position().top + cardlength >= dealbasetopcss && elements[0].position().top + cardlength <= dealbasetopcss + cardlength) ||
+                        (elements[0].position().left + cardwidth >= value && elements[0].position().left + cardwidth <= value + cardwidth && elements[0].position().top >= dealbasetopcss && elements[0].position().top <= dealbasetopcss + cardlength) )
+                        && clipToDealBase(key,elements[0]) ){
                             cliptrue = true;
                             var toClassNameLength = $("."+key).length;
                             for(var x = 0 ; x < elements.length ; x++ ){
@@ -751,11 +758,11 @@
             }
 
             elements = [];
-            currentClassElements = "";
             openTopCard();
             setDraggable();
             ifWin();
-            if(mouseClick && (eClassName.includes("cardpilebase") || eClassName.includes("cardplaybase")) && !eClassName.includes("cardpilebasebg")) clicks();
+            if(mouseClick && (currentClassElements.includes("cardpilebase") || currentClassElements.includes("cardplaybase")) && !currentClassElements.includes("cardpilebasebg")) clicks();
+            currentClassElements = "";
         }
 
         var suitCards = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
@@ -1282,6 +1289,13 @@
                     doubleClick();
                     clickCount = 0;
                     clearTimeout(timeoutVar);
+                }
+                else{
+                    timeoutVar = setTimeout(function(){
+                        clickCount = 0;
+                    }, timeout);
+                    clickCount++;
+                    clickTime = Date.now();
                 }
             }
             else{
