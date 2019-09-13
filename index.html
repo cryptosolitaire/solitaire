@@ -604,8 +604,7 @@
                 elements[x].css("z-index" , parseInt(elements[x].css("z-index")) - 100 );
             }
 
-            var eClassName = document.elementFromPoint(cursorX, cursorY).className;
-            if(eClassName.includes("cardplaybase") || eClassName.includes("dealbase") || eClassName.includes("cardpilebase") || !mouseClick){
+            if(currentClassElements.includes("cardplaybase") || currentClassElements.includes("dealbase") || currentClassElements.includes("cardpilebase") || !mouseClick){
                 var cliptrue = false;
 
                 // If card was drag to cardbase
@@ -751,11 +750,11 @@
             }
 
             elements = [];
-            currentClassElements = "";
             openTopCard();
             setDraggable();
             ifWin();
-            if(mouseClick && (eClassName.includes("cardpilebase") || eClassName.includes("cardplaybase")) && !eClassName.includes("cardpilebasebg")) clicks();
+            if(mouseClick && (currentClassElements.includes("cardpilebase") || currentClassElements.includes("cardplaybase")) && !currentClassElements.includes("cardpilebasebg")) clicks();
+            currentClassElements = "";
         }
 
         var suitCards = ["cardace","card2","card3","card4","card5","card6","card7","card8","card9","card10","cardjack","cardqueen","cardking"];
